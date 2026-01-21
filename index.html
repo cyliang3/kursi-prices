@@ -1,0 +1,1826 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kursi Trades Daily Prices Reference</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-primary: #ffffff;
+            --bg-secondary: #f8f9fa;
+            --bg-card: #ffffff;
+            --bg-card-hover: #f0f4f8;
+            --accent-gold: #c9a962;
+            --accent-green: #1a5c3d;
+            --accent-purple: #5c3d7a;
+            --accent-red: #dc3545;
+            --text-primary: #1a2332;
+            --text-secondary: #4a5568;
+            --text-muted: #718096;
+            --border-color: #e2e8f0;
+            --gradient-gold: linear-gradient(135deg, #c9a962 0%, #e8d5a3 50%, #c9a962 100%);
+            --gradient-green: linear-gradient(135deg, #1a5c3d 0%, #2d8a5e 100%);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* Animated Background with floating particles */
+        .bg-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: 
+                radial-gradient(ellipse at 20% 20%, rgba(201, 169, 98, 0.08) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 80%, rgba(26, 92, 61, 0.05) 0%, transparent 50%),
+                var(--bg-primary);
+            overflow: hidden;
+        }
+
+        /* Chairman watermark - subtle tribute */
+        .chairman-watermark {
+            position: fixed;
+            bottom: 0;
+            right: 0;
+            width: 45%;
+            max-width: 450px;
+            height: auto;
+            opacity: 0.12;
+            z-index: 0;
+            pointer-events: none;
+            filter: grayscale(50%) contrast(0.9);
+            mask-image: radial-gradient(ellipse at 70% 70%, black 20%, transparent 65%);
+            -webkit-mask-image: radial-gradient(ellipse at 70% 70%, black 20%, transparent 65%);
+        }
+
+        /* Floating gold particles */
+        .particle {
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            background: var(--accent-gold);
+            border-radius: 50%;
+            opacity: 0.3;
+            animation: float 15s infinite ease-in-out;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+            10% { opacity: 0.3; }
+            90% { opacity: 0.3; }
+            100% { transform: translateY(-100vh) rotate(720deg); opacity: 0; }
+        }
+
+        /* Glow cursor effect */
+        .cursor-glow {
+            position: fixed;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(201, 169, 98, 0.15) 0%, transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9999;
+            transform: translate(-50%, -50%);
+            transition: opacity 0.3s;
+            opacity: 0;
+        }
+
+        body:hover .cursor-glow {
+            opacity: 1;
+        }
+
+        /* Header */
+        .header {
+            padding: 1.5rem 3rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--border-color);
+            backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .logo-section {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .logo {
+            height: 56px;
+            width: auto;
+        }
+        
+        .logo img {
+            height: 100%;
+            width: auto;
+            object-fit: contain;
+        }
+
+        .company-info h1 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            background: var(--gradient-gold);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .company-info p {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            letter-spacing: 0.1em;
+        }
+
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .update-info {
+            text-align: right;
+        }
+
+        .update-info .label {
+            font-size: 0.7rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        .update-info .time {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.9rem;
+            color: var(--accent-green);
+            font-weight: 500;
+        }
+
+        .live-indicator {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            background: rgba(26, 92, 61, 0.1);
+            border: 1px solid rgba(26, 92, 61, 0.3);
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            color: var(--accent-green);
+            font-weight: 500;
+        }
+
+        .live-dot {
+            width: 8px;
+            height: 8px;
+            background: var(--accent-green);
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+            box-shadow: 0 0 10px var(--accent-green);
+        }
+
+        /* Real-time clock */
+        .real-time-clock {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--accent-purple);
+            padding: 0.5rem 1rem;
+            background: rgba(92, 61, 122, 0.1);
+            border-radius: 8px;
+            border: 1px solid rgba(92, 61, 122, 0.2);
+        }
+
+        .real-time-clock .seconds {
+            color: var(--accent-gold);
+            animation: blink 1s step-end infinite;
+        }
+
+        @keyframes blink {
+            50% { opacity: 0.5; }
+        }
+
+        /* VIP Badge */
+        .vip-badge {
+            position: fixed;
+            top: 100px;
+            right: 20px;
+            padding: 0.5rem 1rem;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            border: 2px solid var(--accent-gold);
+            border-radius: 8px;
+            font-size: 0.65rem;
+            font-weight: 700;
+            letter-spacing: 0.15em;
+            color: var(--accent-gold);
+            z-index: 1000;
+            box-shadow: 0 4px 15px rgba(201, 169, 98, 0.3);
+            animation: vipGlow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes vipGlow {
+            0% { box-shadow: 0 4px 15px rgba(201, 169, 98, 0.3); }
+            100% { box-shadow: 0 4px 30px rgba(201, 169, 98, 0.6); }
+        }
+
+        /* Typewriter effect */
+        .typewriter {
+            overflow: hidden;
+            border-right: 3px solid var(--accent-green);
+            white-space: nowrap;
+            animation: typing 2s steps(30, end), blinkCaret 0.75s step-end infinite;
+        }
+
+        @keyframes typing {
+            from { width: 0; }
+            to { width: 100%; }
+        }
+
+        @keyframes blinkCaret {
+            50% { border-color: transparent; }
+        }
+
+        /* Stats counter */
+        .stats-bar {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            padding: 1.5rem;
+            background: linear-gradient(135deg, rgba(26, 92, 61, 0.05) 0%, rgba(92, 61, 122, 0.05) 100%);
+            border-top: 1px solid var(--border-color);
+            border-bottom: 1px solid var(--border-color);
+            margin-bottom: 2rem;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-value {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--accent-green);
+            display: block;
+        }
+
+        .stat-label {
+            font-size: 0.7rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        /* Refresh button with spin */
+        .refresh-btn {
+            padding: 0.5rem 1rem;
+            background: var(--gradient-green);
+            border: none;
+            border-radius: 8px;
+            color: white;
+            font-size: 0.8rem;
+            font-weight: 500;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .refresh-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 15px rgba(26, 92, 61, 0.4);
+        }
+
+        .refresh-btn.spinning .icon {
+            animation: spin 1s linear infinite;
+        }
+
+        /* Progress bar for data freshness */
+        .freshness-bar {
+            width: 100%;
+            height: 3px;
+            background: var(--border-color);
+            border-radius: 2px;
+            overflow: hidden;
+            margin-top: 0.5rem;
+        }
+
+        .freshness-progress {
+            height: 100%;
+            background: var(--gradient-green);
+            animation: freshness 300s linear forwards;
+        }
+
+        @keyframes freshness {
+            from { width: 100%; }
+            to { width: 0%; }
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.5; transform: scale(1.2); }
+        }
+
+        /* Tab Navigation */
+        .tab-nav {
+            display: flex;
+            justify-content: center;
+            gap: 0.5rem;
+            padding: 1.5rem;
+            background: var(--bg-secondary);
+        }
+
+        .tab-btn {
+            padding: 0.875rem 2.5rem;
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: var(--text-secondary);
+            background: transparent;
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .tab-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: var(--gradient-gold);
+            transition: left 0.3s ease;
+            z-index: -1;
+        }
+
+        .tab-btn:hover {
+            border-color: var(--accent-green);
+            color: var(--accent-green);
+        }
+
+        .tab-btn.active {
+            background: var(--gradient-green);
+            color: #ffffff;
+            border-color: transparent;
+            font-weight: 600;
+            box-shadow: 0 4px 20px rgba(26, 92, 61, 0.3);
+        }
+
+        /* Main Content */
+        .main-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Section Header */
+        .section-header {
+            margin-bottom: 2rem;
+        }
+
+        .section-header h2 {
+            font-size: 1.75rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .section-header p {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        /* Exchange Rates Bar */
+        .exchange-bar {
+            display: flex;
+            gap: 1.5rem;
+            padding: 1rem 1.5rem;
+            background: linear-gradient(135deg, rgba(26, 92, 61, 0.05) 0%, rgba(201, 169, 98, 0.05) 100%);
+            border-radius: 12px;
+            margin-bottom: 2rem;
+            border: 1px solid var(--border-color);
+            overflow-x: auto;
+        }
+
+        .exchange-item {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            white-space: nowrap;
+        }
+
+        .exchange-item .label {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+
+        .exchange-item .value {
+            font-family: 'JetBrains Mono', monospace;
+            font-weight: 600;
+            color: var(--accent-purple);
+        }
+
+        /* Price Grid */
+        .price-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 1.5rem;
+        }
+
+        /* Price Card */
+        .price-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+        }
+
+        .price-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: var(--gradient-green);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .price-card:hover {
+            transform: translateY(-4px);
+            border-color: var(--accent-green);
+            box-shadow: 0 12px 30px rgba(26, 92, 61, 0.12);
+        }
+
+        .price-card:hover::before {
+            opacity: 1;
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 1rem;
+        }
+
+        .card-title {
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .card-subtitle {
+            font-size: 0.7rem;
+            color: var(--text-muted);
+            margin-top: 0.25rem;
+        }
+
+        .source-badge {
+            font-size: 0.65rem;
+            padding: 0.25rem 0.5rem;
+            background: rgba(26, 92, 61, 0.1);
+            border: 1px solid rgba(26, 92, 61, 0.3);
+            border-radius: 4px;
+            color: var(--accent-green);
+            font-weight: 600;
+        }
+
+        .price-value {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 1.75rem;
+            font-weight: 600;
+            margin: 0.5rem 0;
+            color: var(--accent-green);
+            position: relative;
+        }
+
+        /* Number counting animation */
+        .price-value.counting {
+            animation: countPulse 0.5s ease-out;
+        }
+
+        @keyframes countPulse {
+            0% { transform: scale(1.1); color: var(--accent-gold); }
+            100% { transform: scale(1); color: var(--accent-green); }
+        }
+
+        /* Shimmer effect for prices */
+        .price-value::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(201, 169, 98, 0.2), transparent);
+            animation: shimmer 3s infinite;
+        }
+
+        @keyframes shimmer {
+            0% { left: -100%; }
+            50%, 100% { left: 100%; }
+        }
+
+        /* Glowing border animation for cards */
+        .price-card.glow-border {
+            animation: glowBorder 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes glowBorder {
+            0% { box-shadow: 0 0 5px rgba(26, 92, 61, 0.2), 0 2px 8px rgba(0, 0, 0, 0.04); }
+            100% { box-shadow: 0 0 20px rgba(26, 92, 61, 0.4), 0 2px 8px rgba(0, 0, 0, 0.04); }
+        }
+
+        .price-unit {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            font-weight: 400;
+        }
+
+        .price-range {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            margin-top: 0.5rem;
+        }
+
+        .price-change {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.25rem;
+            font-size: 0.8rem;
+            padding: 0.25rem 0.5rem;
+            border-radius: 6px;
+            margin-top: 0.75rem;
+        }
+
+        .price-change.up {
+            background: rgba(26, 92, 61, 0.1);
+            color: var(--accent-green);
+        }
+
+        .price-change.down {
+            background: rgba(220, 53, 69, 0.1);
+            color: var(--accent-red);
+        }
+
+        .price-change.neutral {
+            background: rgba(100, 116, 139, 0.1);
+            color: var(--text-muted);
+        }
+
+        /* Reference Page Styles */
+        .warning-banner {
+            background: linear-gradient(135deg, rgba(220, 53, 69, 0.08) 0%, rgba(201, 169, 98, 0.08) 100%);
+            border: 1px solid rgba(220, 53, 69, 0.3);
+            border-radius: 12px;
+            padding: 1.25rem 1.5rem;
+            margin-bottom: 2rem;
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+        }
+
+        .warning-icon {
+            font-size: 1.5rem;
+            line-height: 1;
+        }
+
+        .warning-content h3 {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--accent-red);
+            margin-bottom: 0.5rem;
+        }
+
+        .warning-content p {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        .warning-content strong {
+            color: var(--accent-red);
+        }
+
+        /* Reference Table */
+        .ref-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+        }
+
+        .ref-card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .ref-card-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
+        .ref-card-unit {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            background: var(--bg-secondary);
+            padding: 0.25rem 0.75rem;
+            border-radius: 6px;
+        }
+
+        .ref-card-note {
+            font-size: 0.7rem;
+            color: var(--accent-purple);
+            margin-top: 0.25rem;
+        }
+
+        .grade-table {
+            width: 100%;
+        }
+
+        .grade-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.75rem 0;
+            border-bottom: 1px solid rgba(45, 55, 72, 0.5);
+            transition: background 0.2s ease;
+        }
+
+        .grade-row:last-child {
+            border-bottom: none;
+        }
+
+        .grade-row:hover {
+            background: rgba(26, 92, 61, 0.05);
+            margin: 0 -1rem;
+            padding-left: 1rem;
+            padding-right: 1rem;
+        }
+
+        /* Offtaker section */
+        .offtaker-section {
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px dashed var(--border-color);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .offtaker-label {
+            font-size: 0.7rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .offtaker-name {
+            font-size: 0.8rem;
+            font-weight: 500;
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+        }
+
+        .offtaker-confirmed {
+            color: var(--accent-green);
+            background: rgba(26, 92, 61, 0.1);
+        }
+
+        .offtaker-tbd {
+            color: var(--text-muted);
+            background: rgba(100, 116, 139, 0.1);
+            font-style: italic;
+        }
+
+        .grade-label {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+
+        .grade-value {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 1rem;
+            font-weight: 500;
+            color: var(--accent-green);
+        }
+
+        /* Comparison Section */
+        .comparison-section {
+            margin-top: 3rem;
+        }
+
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1rem;
+        }
+
+        .comparison-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 1.25rem;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+        }
+
+        .comparison-title {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            margin-bottom: 0.75rem;
+        }
+
+        .comparison-values {
+            display: flex;
+            justify-content: space-between;
+            gap: 1rem;
+        }
+
+        .comp-item {
+            flex: 1;
+        }
+
+        .comp-label {
+            font-size: 0.65rem;
+            color: var(--text-muted);
+            margin-bottom: 0.25rem;
+        }
+
+        .comp-value {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.95rem;
+            font-weight: 500;
+        }
+
+        .comp-value.smm { color: var(--accent-purple); }
+        .comp-value.lme { color: var(--accent-green); }
+
+        .spread {
+            margin-top: 0.75rem;
+            padding-top: 0.75rem;
+            border-top: 1px solid var(--border-color);
+            font-size: 0.8rem;
+        }
+
+        .spread-label {
+            color: var(--text-muted);
+        }
+
+        .spread-value {
+            font-family: 'JetBrains Mono', monospace;
+            font-weight: 500;
+        }
+
+        .spread-value.positive { color: var(--accent-green); }
+        .spread-value.negative { color: var(--accent-red); }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 2rem;
+            margin-top: 2rem;
+            border-top: 1px solid var(--border-color);
+            color: var(--text-muted);
+            font-size: 0.75rem;
+            background: var(--bg-secondary);
+        }
+
+        .footer strong {
+            color: var(--accent-green);
+        }
+
+        /* Login Screen Styles */
+        .login-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #0a1628 0%, #1a2a4a 50%, #0d1f3c 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10000;
+        }
+
+        .login-overlay::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(ellipse at 30% 20%, rgba(201, 169, 98, 0.15) 0%, transparent 50%),
+                radial-gradient(ellipse at 70% 80%, rgba(26, 92, 61, 0.1) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .login-container {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: 0 25px 80px rgba(0, 0, 0, 0.4);
+            text-align: center;
+            max-width: 400px;
+            width: 90%;
+            position: relative;
+            animation: loginSlideIn 0.6s ease-out;
+        }
+
+        @keyframes loginSlideIn {
+            from {
+                opacity: 0;
+                transform: translateY(30px) scale(0.95);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        .login-logo {
+            margin-bottom: 1.5rem;
+        }
+
+        .login-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #1a2332;
+            margin-bottom: 0.5rem;
+        }
+
+        .login-subtitle {
+            font-size: 0.85rem;
+            color: #64748b;
+            margin-bottom: 2rem;
+        }
+
+        .login-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .login-input {
+            padding: 1rem 1.25rem;
+            font-size: 1rem;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            outline: none;
+            transition: all 0.3s ease;
+            text-align: center;
+            letter-spacing: 0.2em;
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .login-input:focus {
+            border-color: var(--accent-green);
+            box-shadow: 0 0 0 4px rgba(26, 92, 61, 0.1);
+        }
+
+        .login-input.error {
+            border-color: var(--accent-red);
+            animation: shake 0.5s ease-in-out;
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            20%, 60% { transform: translateX(-10px); }
+            40%, 80% { transform: translateX(10px); }
+        }
+
+        .login-btn {
+            padding: 1rem 2rem;
+            font-size: 1rem;
+            font-weight: 600;
+            color: white;
+            background: var(--gradient-green);
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .login-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(26, 92, 61, 0.4);
+        }
+
+        .login-error {
+            color: var(--accent-red);
+            font-size: 0.85rem;
+            min-height: 1.5rem;
+            margin-top: 0.5rem;
+        }
+
+        .login-footer {
+            margin-top: 2rem;
+            font-size: 0.7rem;
+            color: #94a3b8;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        /* Welcome Animation Styles */
+        .welcome-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #0a1628 0%, #1a2a4a 50%, #0d1f3c 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .welcome-particles {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+
+        .welcome-particle {
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            background: var(--accent-gold);
+            border-radius: 50%;
+            opacity: 0;
+            animation: welcomeParticle 3s ease-out forwards;
+        }
+
+        @keyframes welcomeParticle {
+            0% {
+                opacity: 0;
+                transform: scale(0) translateY(0);
+            }
+            20% {
+                opacity: 1;
+            }
+            100% {
+                opacity: 0;
+                transform: scale(1.5) translateY(-100px);
+            }
+        }
+
+        .welcome-content {
+            text-align: center;
+            z-index: 10;
+            animation: welcomeContentIn 0.8s ease-out forwards;
+        }
+
+        @keyframes welcomeContentIn {
+            0% {
+                opacity: 0;
+                transform: scale(0.8) translateY(30px);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
+        }
+
+        .welcome-icon {
+            font-size: 5rem;
+            margin-bottom: 1.5rem;
+            animation: welcomeIconBounce 1s ease-out 0.3s forwards, welcomeIconGlow 2s ease-in-out infinite;
+            opacity: 0;
+        }
+
+        .welcome-icon.chairman {
+            filter: drop-shadow(0 0 30px rgba(201, 169, 98, 0.8));
+        }
+
+        .welcome-icon.management {
+            filter: drop-shadow(0 0 30px rgba(26, 92, 61, 0.8));
+        }
+
+        @keyframes welcomeIconBounce {
+            0% {
+                opacity: 0;
+                transform: scale(0) rotate(-180deg);
+            }
+            50% {
+                transform: scale(1.2) rotate(10deg);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1) rotate(0deg);
+            }
+        }
+
+        @keyframes welcomeIconGlow {
+            0%, 100% {
+                filter: drop-shadow(0 0 30px rgba(201, 169, 98, 0.6));
+            }
+            50% {
+                filter: drop-shadow(0 0 50px rgba(201, 169, 98, 1));
+            }
+        }
+
+        .welcome-title {
+            font-size: 3rem;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(135deg, #ffffff 0%, #c9a962 50%, #ffffff 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: welcomeTextIn 0.8s ease-out 0.5s forwards, shimmerText 3s ease-in-out infinite;
+            opacity: 0;
+            background-size: 200% auto;
+        }
+
+        @keyframes welcomeTextIn {
+            0% {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes shimmerText {
+            0% { background-position: 0% center; }
+            100% { background-position: 200% center; }
+        }
+
+        .welcome-subtitle {
+            font-size: 1.2rem;
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 2rem;
+            animation: welcomeTextIn 0.8s ease-out 0.7s forwards;
+            opacity: 0;
+        }
+
+        .welcome-loader {
+            width: 200px;
+            height: 4px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 4px;
+            margin: 0 auto;
+            overflow: hidden;
+            animation: welcomeTextIn 0.8s ease-out 0.9s forwards;
+            opacity: 0;
+        }
+
+        .loader-bar {
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(90deg, var(--accent-gold), var(--accent-green), var(--accent-gold));
+            background-size: 200% auto;
+            border-radius: 4px;
+            animation: loaderProgress 2s ease-out forwards, loaderShimmer 1s linear infinite;
+        }
+
+        @keyframes loaderProgress {
+            0% { width: 0%; }
+            100% { width: 100%; }
+        }
+
+        @keyframes loaderShimmer {
+            0% { background-position: 0% center; }
+            100% { background-position: 200% center; }
+        }
+
+        .login-overlay.fade-out {
+            animation: fadeOut 0.5s ease-out forwards;
+        }
+
+        @keyframes fadeOut {
+            0% { opacity: 1; }
+            100% { opacity: 0; }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header {
+                flex-direction: column;
+                gap: 1rem;
+                padding: 1rem;
+            }
+
+            .header-right {
+                width: 100%;
+                justify-content: space-between;
+            }
+
+            .main-content {
+                padding: 1rem;
+            }
+
+            .price-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .tab-btn {
+                padding: 0.75rem 1.5rem;
+                font-size: 0.8rem;
+            }
+        }
+
+        /* Loading Animation */
+        .loading {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 200px;
+        }
+
+        .loading-spinner {
+            width: 40px;
+            height: 40px;
+            border: 3px solid var(--border-color);
+            border-top-color: var(--accent-gold);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* Tooltip */
+        .tooltip {
+            position: relative;
+            cursor: help;
+        }
+
+        .tooltip::after {
+            content: attr(data-tip);
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 0.5rem 0.75rem;
+            background: var(--bg-primary);
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            font-size: 0.7rem;
+            white-space: nowrap;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.2s ease;
+            z-index: 10;
+        }
+
+        .tooltip:hover::after {
+            opacity: 1;
+            visibility: visible;
+            bottom: calc(100% + 8px);
+        }
+    </style>
+</head>
+<body>
+    <!-- Login Screen -->
+    <div class="login-overlay" id="loginOverlay">
+        <div class="login-container">
+            <div class="login-logo">
+                <img src="ScreenShot_2026-01-21_223007_761.png" alt="Kursi Trades" style="height: 80px;">
+            </div>
+            <h2 class="login-title">Executive Access</h2>
+            <p class="login-subtitle">Enter your access code to continue</p>
+            <form class="login-form" onsubmit="return checkPassword()">
+                <input type="password" id="passwordInput" class="login-input" placeholder="Access Code" autocomplete="off">
+                <button type="submit" class="login-btn">
+                    <span>🔓 Unlock</span>
+                </button>
+            </form>
+            <p class="login-error" id="loginError"></p>
+            <p class="login-footer">Authorized personnel only</p>
+        </div>
+    </div>
+
+    <!-- Main Content (hidden until login) -->
+    <div class="main-wrapper" id="mainWrapper" style="display: none;">
+        <div class="bg-animation" id="bgAnimation"></div>
+        <img src="9fb4d25c7e7e5026e0c12dff08e6bc48.jpg" alt="" class="chairman-watermark">
+        <div class="cursor-glow" id="cursorGlow"></div>
+        <div class="vip-badge">🔒 EXECUTIVE ACCESS ONLY</div>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="logo-section">
+            <div class="logo">
+                <img src="ScreenShot_2026-01-21_223007_761.png" alt="Kursi Trades">
+            </div>
+        </div>
+        <div class="header-right">
+            <div class="real-time-clock" id="realTimeClock">--:--:--</div>
+            <div class="update-info">
+                <div class="label">Last Updated</div>
+                <div class="time" id="lastUpdate">Loading...</div>
+                <div class="freshness-bar"><div class="freshness-progress" id="freshnessProgress"></div></div>
+            </div>
+            <button class="refresh-btn" onclick="refreshData()">
+                <span class="icon">🔄</span> Refresh
+            </button>
+            <div class="live-indicator">
+                <div class="live-dot"></div>
+                <span>LIVE</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Tab Navigation -->
+    <nav class="tab-nav">
+        <button class="tab-btn active" data-tab="market">📊 Market Prices</button>
+        <button class="tab-btn" data-tab="reference">🔒 Reference Prices</button>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Market Tab -->
+        <div class="tab-content active" id="market">
+            <div class="section-header">
+                <h2>International Market Prices</h2>
+                <p>Real-time prices from SMM (Shanghai Metals Market) and LME (London Metal Exchange)</p>
+            </div>
+
+            <!-- Stats Bar -->
+            <div class="stats-bar">
+                <div class="stat-item">
+                    <span class="stat-value" id="statCommodities">0</span>
+                    <span class="stat-label">Commodities Tracked</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-value" id="statUp">0</span>
+                    <span class="stat-label" style="color: var(--accent-green);">▲ Rising</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-value" id="statDown">0</span>
+                    <span class="stat-label" style="color: var(--accent-red);">▼ Falling</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-value" id="statStable">0</span>
+                    <span class="stat-label">― Stable</span>
+                </div>
+            </div>
+
+            <!-- Exchange Rates -->
+            <div class="exchange-bar" id="exchangeBar">
+                <div class="exchange-item">
+                    <span class="label">USD/NGN</span>
+                    <span class="value" id="usdNgn">-</span>
+                </div>
+                <div class="exchange-item">
+                    <span class="label">USD/CNY</span>
+                    <span class="value" id="usdCny">-</span>
+                </div>
+                <div class="exchange-item">
+                    <span class="label">CNY/NGN</span>
+                    <span class="value" id="cnyNgn">-</span>
+                </div>
+                <div class="exchange-item">
+                    <span class="label">Rate Type</span>
+                    <span class="value" style="color: var(--accent-green); font-weight: 600;">Parallel Market</span>
+                </div>
+            </div>
+
+            <!-- SMM Prices -->
+            <h3 style="margin: 2rem 0 1rem; color: var(--text-secondary); font-size: 0.9rem;">SMM PRICES</h3>
+            <div class="price-grid" id="smmPrices">
+                <!-- Prices will be loaded here -->
+            </div>
+
+            <!-- LME Comparison -->
+            <div class="comparison-section">
+                <h3 style="margin-bottom: 1rem; color: var(--text-secondary); font-size: 0.9rem;">SMM vs LME COMPARISON</h3>
+                <div class="comparison-grid" id="comparisonGrid">
+                    <!-- Comparison will be loaded here -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Reference Tab -->
+        <div class="tab-content" id="reference">
+            <div class="section-header">
+                <h2>Maximum Purchase Prices</h2>
+                <p>Calculated reference prices for procurement decisions</p>
+            </div>
+
+            <!-- Warning Banner -->
+            <div class="warning-banner">
+                <div class="warning-icon">⚠️</div>
+                <div class="warning-content">
+                    <h3>INTERNAL USE ONLY - CONFIDENTIAL</h3>
+                    <p>
+                        These prices represent the <strong>ZERO-PROFIT ceiling</strong> based on current market conditions. 
+                        Actual purchase prices <strong>MUST BE LOWER</strong> than these figures to ensure profitability.
+                        <br><br>
+                        <strong>DO NOT SHARE</strong> this information externally. For Kursi Management Team only.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Reference Prices Grid -->
+            <div class="price-grid" id="refPrices">
+                <!-- Reference prices will be loaded here -->
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>© 2026 <strong>KURSI Investment Limited</strong> • A Subsidiary of Kursi Group</p>
+        <p style="margin-top: 0.5rem;">Data sources: SMM (metal.com), LME (Investing.com), Exchange rates (Aboki Forex)</p>
+        <p style="margin-top: 1.5rem; font-size: 0.65rem; color: #a0aec0; font-style: italic;">Developed by Andrew Liang, GM of Kursi Trades Jos</p>
+    </footer>
+    </div><!-- End main-wrapper -->
+
+    <script>
+        // ==================== PASSWORD CONFIGURATION ====================
+        // Add or modify passwords here
+        const VALID_PASSWORDS = {
+            'fataikursijos1': { role: 'Chairman', welcome: 'Welcome, Chairman', subtitle: 'Setting the standard.' },
+            'mgmtkursijos1': { role: 'Management', welcome: 'Welcome, Team', subtitle: 'Stronger together.' },
+            'andrew888': { role: 'Admin', welcome: 'Welcome, Andrew', subtitle: 'System access granted.' }
+        };
+        // ================================================================
+
+        // Check password
+        function checkPassword() {
+            const input = document.getElementById('passwordInput');
+            const password = input.value.trim();
+            const errorEl = document.getElementById('loginError');
+            
+            if (VALID_PASSWORDS[password]) {
+                const user = VALID_PASSWORDS[password];
+                
+                // Save to session
+                sessionStorage.setItem('kursi_auth', 'true');
+                sessionStorage.setItem('kursi_user', user.role);
+                
+                // Show welcome animation
+                showWelcomeAnimation(user.welcome, user.subtitle, user.role);
+                
+                return false;
+            } else {
+                // Failed
+                input.classList.add('error');
+                errorEl.textContent = 'Invalid access code. Please try again.';
+                
+                setTimeout(() => {
+                    input.classList.remove('error');
+                }, 500);
+                
+                return false;
+            }
+        }
+
+        // Show welcome animation
+        function showWelcomeAnimation(welcomeText, subtitle, role) {
+            const overlay = document.getElementById('loginOverlay');
+            
+            // Create welcome screen
+            const welcomeHtml = `
+                <div class="welcome-screen" id="welcomeScreen">
+                    <div class="welcome-particles" id="welcomeParticles"></div>
+                    <div class="welcome-content">
+                        <div class="welcome-icon ${role.toLowerCase()}">${role === 'Chairman' ? '👑' : '🚀'}</div>
+                        <h1 class="welcome-title">${welcomeText}</h1>
+                        <p class="welcome-subtitle">${subtitle}</p>
+                        <div class="welcome-loader">
+                            <div class="loader-bar"></div>
+                        </div>
+                    </div>
+                </div>
+            `;
+            
+            overlay.innerHTML = welcomeHtml;
+            
+            // Create particles for welcome screen
+            const particleContainer = document.getElementById('welcomeParticles');
+            for (let i = 0; i < 50; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'welcome-particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.top = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 2 + 's';
+                particle.style.animationDuration = (2 + Math.random() * 3) + 's';
+                particleContainer.appendChild(particle);
+            }
+            
+            // After animation, show main content
+            setTimeout(() => {
+                overlay.classList.add('fade-out');
+                setTimeout(() => {
+                    overlay.style.display = 'none';
+                    document.getElementById('mainWrapper').style.display = 'block';
+                    initializeApp();
+                }, 500);
+            }, 2500);
+        }
+
+        // Check if already logged in this session
+        function checkSession() {
+            if (sessionStorage.getItem('kursi_auth') === 'true') {
+                document.getElementById('loginOverlay').style.display = 'none';
+                document.getElementById('mainWrapper').style.display = 'block';
+                initializeApp();
+            }
+        }
+
+        // Initialize app after login
+        function initializeApp() {
+            loadMarketData();
+            loadReferenceData();
+            startClock();
+            createParticles();
+            initCursorGlow();
+        }
+
+        // Check session on page load
+        checkSession();
+
+        // Tab switching
+        document.querySelectorAll('.tab-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+                document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+                btn.classList.add('active');
+                document.getElementById(btn.dataset.tab).classList.add('active');
+            });
+        });
+
+        // Commodity names mapping
+        const commodityNames = {
+            monazite_concentrate: { name: 'Monazite Concentrate' },
+            spodumene: { name: 'Spodumene Concentrate' },
+            lithium_carbonate: { name: 'Lithium Carbonate (Battery Grade)' },
+            titanium_concentrate: { name: 'Titanium Concentrate' },
+            tantalum_ore: { name: 'Tantalum Ore' },
+            tantalum_oxide: { name: 'Tantalum Oxide (Ta₂O₅)' },
+            niobium_oxide: { name: 'Niobium Oxide (Nb₂O₅)' },
+            zircon_sand: { name: 'Zircon Sand' },
+            tin: { name: 'Tin' },
+            lead: { name: 'Lead' },
+            zinc: { name: 'Zinc' },
+            gold: { name: 'Gold' },
+            silver: { name: 'Silver' }
+        };
+
+        const refNames = {
+            tin_ore: { name: 'Tin Ore', offtaker: 'China Minmetals, Sinovolt Technology' },
+            coltan: { name: 'Coltan (Tantalum-Niobium)', offtaker: 'China Minmetals, Sinovolt Technology' },
+            monazite: { name: 'Monazite', offtaker: 'CNNC (China National Nuclear Corporation)' },
+            titanium: { name: 'Titanium Concentrate', offtaker: 'Yibin Tianyuan Group, Sinovolt Technology' },
+            zircon: { name: 'Zircon Sand', offtaker: 'TBD' },
+            spodumene: { name: 'Spodumene', offtaker: 'Yibin Tianyuan Group, Sinovolt Technology' },
+            lepidolite: { name: 'Lepidolite', offtaker: 'Yibin Tianyuan Group, Sinovolt Technology' },
+            lead_ore: { name: 'Lead Ore', offtaker: 'TBD' },
+            zinc_ore: { name: 'Zinc Ore', offtaker: 'TBD' }
+        };
+
+        // Format number with commas
+        function formatNumber(num, decimals = 2) {
+            if (num === null || num === undefined) return '-';
+            return num.toLocaleString('en-US', { 
+                minimumFractionDigits: decimals, 
+                maximumFractionDigits: decimals 
+            });
+        }
+
+        // Get change class
+        function getChangeClass(change) {
+            if (change > 0) return 'up';
+            if (change < 0) return 'down';
+            return 'neutral';
+        }
+
+        // Get change icon
+        function getChangeIcon(change) {
+            if (change > 0) return '▲';
+            if (change < 0) return '▼';
+            return '―';
+        }
+
+        // Load market data
+        async function loadMarketData() {
+            try {
+                const response = await fetch('data/prices_2026-01-21.json');
+                const data = await response.json();
+                
+                // Also load reference data for corrected exchange rates
+                const refResponse = await fetch('data/max_purchase_prices_2026-01-21.json');
+                const refData = await refResponse.json();
+                
+                // Update last update time
+                document.getElementById('lastUpdate').textContent = 
+                    `${data.date} ${data.fetch_time || ''}`;
+
+                // Use corrected exchange rates from reference data if available
+                const correctedRates = refData.exchange_rates || {};
+                document.getElementById('usdNgn').textContent = 
+                    formatNumber(correctedRates.usd_ngn || data.exchange_rates.usd_ngn?.rate || data.exchange_rates.usd_ngn, 0);
+                document.getElementById('usdCny').textContent = 
+                    formatNumber(correctedRates.usd_cny || data.exchange_rates.usd_cny?.rate || data.exchange_rates.usd_cny, 4);
+                document.getElementById('cnyNgn').textContent = 
+                    formatNumber(correctedRates.cny_ngn || data.exchange_rates.cny_ngn?.rate || data.exchange_rates.cny_ngn, 2);
+
+                // Update stats
+                updateStats(data);
+
+                // Render SMM prices
+                const smmContainer = document.getElementById('smmPrices');
+                smmContainer.innerHTML = '';
+
+                for (const [key, value] of Object.entries(data.smm_prices)) {
+                    const info = commodityNames[key] || { name: key, cn: '' };
+                    const change = value.change || 0;
+                    const changeClass = getChangeClass(change);
+                    
+                    let priceDisplay = '';
+                    if (value.price_avg !== undefined) {
+                        priceDisplay = formatNumber(value.price_avg);
+                    } else if (value.price !== undefined) {
+                        priceDisplay = formatNumber(value.price);
+                    }
+
+                    let rangeDisplay = '';
+                    if (value.price_low && value.price_high) {
+                        rangeDisplay = `Range: ${formatNumber(value.price_low)} - ${formatNumber(value.price_high)}`;
+                    }
+
+                    smmContainer.innerHTML += `
+                        <div class="price-card">
+                            <div class="card-header">
+                                <div>
+                                    <div class="card-title">${info.name}</div>
+                                    <div class="card-subtitle">${value.note || ''}</div>
+                                </div>
+                                <span class="source-badge">SMM</span>
+                            </div>
+                            <div class="price-value">
+                                ${priceDisplay}
+                                <span class="price-unit">${value.unit}</span>
+                            </div>
+                            ${rangeDisplay ? `<div class="price-range">${rangeDisplay}</div>` : ''}
+                            <div class="price-change ${changeClass}">
+                                ${getChangeIcon(change)} ${change >= 0 ? '+' : ''}${formatNumber(change)}
+                            </div>
+                        </div>
+                    `;
+                }
+
+                // Render LME comparison
+                const compContainer = document.getElementById('comparisonGrid');
+                compContainer.innerHTML = '';
+                
+                const comparisons = ['tin', 'lead', 'zinc', 'gold', 'silver'];
+                
+                for (const key of comparisons) {
+                    const smm = data.smm_prices[key];
+                    const lme = data.lme_prices[key];
+                    
+                    if (smm && lme) {
+                        const smmPrice = smm.price_avg || smm.price || 0;
+                        const lmePrice = lme.price || 0;
+                        const spread = smmPrice - lmePrice;
+                        const spreadPct = lmePrice ? ((spread / lmePrice) * 100).toFixed(2) : 0;
+                        
+                        compContainer.innerHTML += `
+                            <div class="comparison-card">
+                                <div class="comparison-title">${(commodityNames[key]?.name || key).toUpperCase()}</div>
+                                <div class="comparison-values">
+                                    <div class="comp-item">
+                                        <div class="comp-label">SMM</div>
+                                        <div class="comp-value smm">${formatNumber(smmPrice, 0)}</div>
+                                    </div>
+                                    <div class="comp-item">
+                                        <div class="comp-label">LME</div>
+                                        <div class="comp-value lme">${formatNumber(lmePrice, 0)}</div>
+                                    </div>
+                                </div>
+                                <div class="spread">
+                                    <span class="spread-label">Spread: </span>
+                                    <span class="spread-value ${spread >= 0 ? 'positive' : 'negative'}">
+                                        ${spread >= 0 ? '+' : ''}${formatNumber(spread, 0)} (${spreadPct}%)
+                                    </span>
+                                </div>
+                            </div>
+                        `;
+                    }
+                }
+
+            } catch (error) {
+                console.error('Error loading market data:', error);
+            }
+        }
+
+        // Load reference data
+        async function loadReferenceData() {
+            try {
+                const response = await fetch('data/max_purchase_prices_2026-01-21.json');
+                const data = await response.json();
+                
+                const container = document.getElementById('refPrices');
+                container.innerHTML = '';
+
+                for (const [key, value] of Object.entries(data.max_purchase_prices)) {
+                    const info = refNames[key] || { name: key, offtaker: 'TBD' };
+                    
+                    let gradesHtml = '';
+                    for (const [grade, price] of Object.entries(value.grades)) {
+                        gradesHtml += `
+                            <div class="grade-row">
+                                <span class="grade-label">${grade}</span>
+                                <span class="grade-value">${formatNumber(price, 0)}</span>
+                            </div>
+                        `;
+                    }
+
+                    const offtakerClass = info.offtaker === 'TBD' ? 'offtaker-tbd' : 'offtaker-confirmed';
+
+                    container.innerHTML += `
+                        <div class="ref-card">
+                            <div class="ref-card-header">
+                                <div>
+                                    <div class="ref-card-title">${info.name}</div>
+                                    ${value.note ? `<div class="ref-card-note">${value.note}</div>` : ''}
+                                </div>
+                                <span class="ref-card-unit">${value.unit}</span>
+                            </div>
+                            <div class="grade-table">
+                                <div class="grade-row" style="border-bottom: 2px solid var(--border-color);">
+                                    <span class="grade-label" style="color: var(--text-muted); font-size: 0.75rem;">GRADE</span>
+                                    <span class="grade-label" style="color: var(--text-muted); font-size: 0.75rem;">MAX PRICE</span>
+                                </div>
+                                ${gradesHtml}
+                            </div>
+                            <div class="offtaker-section">
+                                <span class="offtaker-label">Potential Offtaker:</span>
+                                <span class="offtaker-name ${offtakerClass}">${info.offtaker}</span>
+                            </div>
+                        </div>
+                    `;
+                }
+
+            } catch (error) {
+                console.error('Error loading reference data:', error);
+            }
+        }
+
+        // Initialize - now handled by checkSession() and initializeApp()
+        document.addEventListener('DOMContentLoaded', () => {
+            // Only check session, actual init happens after login
+            checkSession();
+        });
+
+        // Auto refresh every 5 minutes
+        setInterval(() => {
+            refreshData();
+        }, 300000);
+
+        // Real-time clock
+        function startClock() {
+            function updateClock() {
+                const now = new Date();
+                const hours = String(now.getHours()).padStart(2, '0');
+                const minutes = String(now.getMinutes()).padStart(2, '0');
+                const seconds = String(now.getSeconds()).padStart(2, '0');
+                document.getElementById('realTimeClock').innerHTML = 
+                    `${hours}:${minutes}:<span class="seconds">${seconds}</span>`;
+            }
+            updateClock();
+            setInterval(updateClock, 1000);
+        }
+
+        // Create floating particles
+        function createParticles() {
+            const container = document.getElementById('bgAnimation');
+            for (let i = 0; i < 20; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 15 + 's';
+                particle.style.animationDuration = (10 + Math.random() * 10) + 's';
+                container.appendChild(particle);
+            }
+        }
+
+        // Cursor glow effect
+        function initCursorGlow() {
+            const glow = document.getElementById('cursorGlow');
+            document.addEventListener('mousemove', (e) => {
+                glow.style.left = e.clientX + 'px';
+                glow.style.top = e.clientY + 'px';
+            });
+        }
+
+        // Refresh data with animation
+        function refreshData() {
+            const btn = document.querySelector('.refresh-btn');
+            btn.classList.add('spinning');
+            
+            // Reset freshness bar
+            const progress = document.getElementById('freshnessProgress');
+            progress.style.animation = 'none';
+            progress.offsetHeight; // Trigger reflow
+            progress.style.animation = 'freshness 300s linear forwards';
+            
+            loadMarketData();
+            loadReferenceData();
+            
+            setTimeout(() => btn.classList.remove('spinning'), 1000);
+        }
+
+        // Animate number counting
+        function animateNumber(element, targetValue, duration = 1000) {
+            const startValue = 0;
+            const startTime = performance.now();
+            
+            function update(currentTime) {
+                const elapsed = currentTime - startTime;
+                const progress = Math.min(elapsed / duration, 1);
+                const easeOut = 1 - Math.pow(1 - progress, 3);
+                const currentValue = Math.floor(startValue + (targetValue - startValue) * easeOut);
+                element.textContent = currentValue;
+                
+                if (progress < 1) {
+                    requestAnimationFrame(update);
+                } else {
+                    element.textContent = targetValue;
+                }
+            }
+            
+            requestAnimationFrame(update);
+        }
+
+        // Update stats
+        function updateStats(data) {
+            let up = 0, down = 0, stable = 0, total = 0;
+            
+            for (const [key, value] of Object.entries(data.smm_prices)) {
+                total++;
+                const change = value.change || 0;
+                if (change > 0) up++;
+                else if (change < 0) down++;
+                else stable++;
+            }
+            
+            animateNumber(document.getElementById('statCommodities'), total, 800);
+            animateNumber(document.getElementById('statUp'), up, 800);
+            animateNumber(document.getElementById('statDown'), down, 800);
+            animateNumber(document.getElementById('statStable'), stable, 800);
+        }
+    </script>
+</body>
+</html>

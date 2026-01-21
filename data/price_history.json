@@ -1,0 +1,197 @@
+{
+  "2026-01-21": {
+    "date": "2026-01-21",
+    "fetch_time": "15:11 UTC",
+    "data_source": "metal.com (SMM), Investing.com (LME), 央行中间价/Aboki Forex (汇率)",
+    "smm_prices": {
+      "monazite_concentrate": {
+        "name": "Monazite Concentrate (独居石精矿)",
+        "price_low": 7440.97,
+        "price_high": 7567.73,
+        "price_avg": 7504.35,
+        "unit": "USD/mt",
+        "change": -42.24,
+        "change_percent": -0.56
+      },
+      "spodumene": {
+        "name": "Spodumene Concentrate (锂辉石精矿)",
+        "price_low": 2050,
+        "price_high": 2190,
+        "price_avg": 2120,
+        "unit": "USD/mt",
+        "change": 60,
+        "note": "CIF China"
+      },
+      "lithium_carbonate": {
+        "name": "Lithium Carbonate, Battery Grade (电池级碳酸锂)",
+        "price_low": 19648.22,
+        "price_high": 20535.56,
+        "price_avg": 20091.89,
+        "unit": "USD/mt",
+        "change": 749.77
+      },
+      "titanium_concentrate": {
+        "name": "Titanium Concentrate (钛精矿)",
+        "price_low": 1800,
+        "price_high": 1900,
+        "price_avg": 1850,
+        "unit": "CNY/mt",
+        "change": 0,
+        "note": "Nigeria origin, TiO2 content ≥50%"
+      },
+      "tantalum_ore": {
+        "name": "Tantalum Ore (钽矿)",
+        "price_low": 109,
+        "price_high": 110,
+        "price_avg": 109.5,
+        "unit": "USD/lb",
+        "change": 1,
+        "note": "Ta2O5 content ≥30%"
+      },
+      "tantalum_oxide": {
+        "name": "Tantalum Oxide (五氧化二钽)",
+        "price_low": 297.89,
+        "price_high": 304.23,
+        "price_avg": 301.06,
+        "unit": "USD/kg",
+        "change": 6.17,
+        "note": "Ta2O5 ≥99.5%"
+      },
+      "niobium_oxide": {
+        "name": "Niobium Oxide (五氧化二铌)",
+        "price_low": 41.83,
+        "price_high": 42.47,
+        "price_avg": 42.15,
+        "unit": "USD/kg",
+        "change": -0.02,
+        "note": "Nb2O5 99.5%"
+      },
+      "zircon_sand": {
+        "name": "Zircon Sand (锆英砂)",
+        "price_low": 1711.3,
+        "price_high": 1774.68,
+        "price_avg": 1742.99,
+        "unit": "USD/mt",
+        "change": -0.97,
+        "note": "Zirconium Silicate (Zr(Hf)O2 ≥65%)"
+      },
+      "tin": {
+        "name": "Tin (锡)",
+        "price_low": 49805.06,
+        "price_high": 50527.61,
+        "price_avg": 50166.34,
+        "unit": "USD/mt",
+        "change": 79.77,
+        "note": "SMM #1 Tin Ingot"
+      },
+      "lead": {
+        "name": "Lead (铅)",
+        "price_low": 2129.61,
+        "price_high": 2148.63,
+        "price_avg": 2139.12,
+        "unit": "USD/mt",
+        "change": -17.05,
+        "note": "SMM #1 Lead"
+      },
+      "zinc": {
+        "name": "Zinc (锌)",
+        "price_low": 3062.59,
+        "price_high": 3075.26,
+        "price_avg": 3068.92,
+        "unit": "USD/mt",
+        "change": -18.2,
+        "note": "SMM 0# Zinc"
+      },
+      "gold": {
+        "name": "Gold (黄金)",
+        "price_avg": 4273.12,
+        "unit": "USD/oz",
+        "change": 146.73,
+        "change_percent": 3.56,
+        "note": "Gold(99.99%)"
+      },
+      "silver": {
+        "name": "Silver (白银)",
+        "price_avg": 2922.51,
+        "unit": "USD/kg",
+        "change": -30.17,
+        "change_percent": -1.02,
+        "note": "1# silver"
+      }
+    },
+    "lme_prices": {
+      "tin": {
+        "name": "Tin (锡)",
+        "price": 49180.0,
+        "unit": "USD/mt",
+        "change": 1233.0,
+        "change_percent": 2.57,
+        "source": "Investing.com"
+      },
+      "lead": {
+        "name": "Lead (铅)",
+        "price": 2025.63,
+        "unit": "USD/mt",
+        "change": -7.45,
+        "change_percent": -0.37,
+        "source": "Investing.com"
+      },
+      "zinc": {
+        "name": "Zinc (锌)",
+        "price": 2297.0,
+        "unit": "USD/mt",
+        "change": 0.0,
+        "change_percent": 0.0,
+        "source": "Investing.com"
+      },
+      "gold": {
+        "name": "Gold (黄金)",
+        "price": 4783.74,
+        "unit": "USD/oz",
+        "change": 17.94,
+        "change_percent": 0.38,
+        "source": "Investing.com"
+      },
+      "silver": {
+        "name": "Silver (白银)",
+        "price": 91.045,
+        "unit": "USD/oz",
+        "change": -3.591,
+        "change_percent": -3.79,
+        "source": "Investing.com"
+      }
+    },
+    "exchange_rates": {
+      "usd_cny": {
+        "rate": 7.0014,
+        "unit": "CNY/USD",
+        "source": "中国人民银行授权中国外汇交易中心",
+        "type": "official_mid_rate"
+      },
+      "usd_ngn": {
+        "rate": 1487,
+        "unit": "NGN/USD",
+        "source": "Aboki Forex",
+        "type": "parallel_market_rate"
+      },
+      "cny_ngn": {
+        "rate": 212.35,
+        "unit": "NGN/CNY",
+        "calculated": true,
+        "calculation": "1487 / 7.0014"
+      }
+    },
+    "data_summary": {
+      "total_commodities": 13,
+      "smm_commodities": 13,
+      "lme_commodities": 5,
+      "data_completeness": "100%",
+      "notes": "所有数据已成功收集。SMM数据来自metal.com官方网站，LME数据来自Investing.com实时市场数据，汇率数据分别来自中国人民银行官方中间价和尼日利亚平行市场(Aboki Forex)。"
+    },
+    "data_issues": {
+      "unavailable": [],
+      "missing_data": [],
+      "status": "完整"
+    }
+  }
+}
