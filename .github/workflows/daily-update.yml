@@ -20,7 +20,7 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v4
       with:
-        token: ${{ secrets.GITHUB_TOKEN }}
+        fetch-depth: 0  # 获取完整历史记录
     
     - name: Set up Python
       uses: actions/setup-python@v5
@@ -46,8 +46,30 @@ jobs:
       continue-on-error: true
     
     - name: Commit and push changes
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
         git config --local user.email "action@github.com"
         git config --local user.name "GitHub Action"
-        git add data/
-        git diff --quiet && git diff --staged --quiet || (git commit -m "Daily price update $(date +'%Y-%m-%d %H:%M UTC')" && git push)
+        # 检查是否有数据文件生成
+        echo "📂 检查数据文件..."
+        ls -la data/ || echo "⚠️ data 目录不存在"
+        find data/ -name "*.json" -type f || echo "⚠️ 没有找到 JSON 文件"
+        # 添加所有数据文件（包括新文件和修改的文件）
+        git add data/*.json 2>/dev/null || true
+        git add data/ 2>/dev/null || true
+        # 显示将要提交的文件
+        echo "📋 Git 状态:"
+        git status
+        echo "📋 暂存的文件:"
+        git diff --staged --name-only || echo "没有暂存的文件"
+        # 提交并推送
+        if ! git diff --staged --quiet; then
+          echo "✅ 提交更改..."
+          git commit -m "Daily price update $(date +'%Y-%m-%d %H:%M UTC')" || exit 0
+          echo "📤 推送到 GitHub..."
+          git push origin main || echo "⚠️ 推送失败，但继续执行"
+          echo "✅ 数据已推送到 GitHub"
+        else
+          echo "ℹ️ 没有更改需要提交"
+        fi
