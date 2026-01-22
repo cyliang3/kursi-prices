@@ -422,6 +422,7 @@ class PriceCalculator:
             "grades": {
                 "30%": round(self.calc_monazite(30), 0),
                 "40%": round(self.calc_monazite(40), 0),
+                "45%": round(self.calc_monazite(45), 0),
                 "50%": round(self.calc_monazite(50), 0),
                 "60%": round(self.calc_monazite(60), 0)
             }
