@@ -3,6 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
     <title>Kursi Trades Daily Prices Reference</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
     <style>
@@ -1480,6 +1483,8 @@
 
         // Initialize app after login
         function initializeApp() {
+            console.log('🚀 初始化应用...');
+            console.log('📅 当前日期:', getTodayDate());
             loadMarketData();
             loadReferenceData();
             startClock();
@@ -1570,49 +1575,80 @@
                 dates.push(d.toISOString().split('T')[0]);
             }
             
+            // Add cache-busting timestamp to prevent browser caching
+            const cacheBuster = '?t=' + Date.now();
+            
             for (const date of dates) {
                 try {
-                    const response = await fetch(`data/${baseName}_${date}.json`);
+                    const url = `data/${baseName}_${date}.json${cacheBuster}`;
+                    console.log(`尝试加载: ${url}`);
+                    const response = await fetch(url, {
+                        cache: 'no-store',  // 禁用缓存
+                        headers: {
+                            'Cache-Control': 'no-cache'
+                        }
+                    });
                     if (response.ok) {
-                        return await response.json();
+                        const data = await response.json();
+                        console.log(`✅ 成功加载数据: ${baseName}_${date}.json, 日期: ${data.date}`);
+                        return data;
+                    } else {
+                        console.log(`❌ 文件不存在: ${url} (${response.status})`);
                     }
                 } catch (e) {
+                    console.error(`加载失败 ${baseName}_${date}.json:`, e);
                     continue;
                 }
             }
             
             // Fallback: try loading from price_history.json
             try {
-                const historyResponse = await fetch('data/price_history.json');
+                const historyUrl = `data/price_history.json${cacheBuster}`;
+                console.log(`尝试从历史文件加载: ${historyUrl}`);
+                const historyResponse = await fetch(historyUrl, {
+                    cache: 'no-store',
+                    headers: {
+                        'Cache-Control': 'no-cache'
+                    }
+                });
                 if (historyResponse.ok) {
                     const history = await historyResponse.json();
                     const latestDate = Object.keys(history).sort().reverse()[0];
                     if (latestDate) {
+                        console.log(`✅ 从历史文件加载: ${latestDate}`);
                         return history[latestDate];
                     }
                 }
             } catch (e) {
-                console.error('Could not load price history:', e);
+                console.error('无法加载价格历史:', e);
             }
             
+            console.error(`❌ 未找到任何 ${baseName} 数据文件`);
             return null;
         }
 
         // Load market data
         async function loadMarketData() {
             try {
+                console.log('📊 开始加载市场数据...');
                 const data = await findLatestDataFile('prices');
                 if (!data) {
-                    console.error('No price data found');
+                    console.error('❌ 未找到价格数据');
+                    document.getElementById('lastUpdate').textContent = '数据未找到';
+                    document.getElementById('lastUpdate').style.color = 'var(--accent-red)';
                     return;
                 }
+                
+                console.log('✅ 市场数据加载成功:', data.date);
                 
                 // Also load reference data for corrected exchange rates
                 const refData = await findLatestDataFile('max_purchase_prices') || {};
                 
                 // Update last update time
-                document.getElementById('lastUpdate').textContent = 
-                    `${data.date} ${data.fetch_time || ''}`;
+                const updateTime = data.fetch_time ? `${data.date} ${data.fetch_time} UTC` : data.date;
+                document.getElementById('lastUpdate').textContent = updateTime;
+                document.getElementById('lastUpdate').style.color = 'var(--accent-green)';
+                console.log('📅 最后更新时间:', updateTime);
 
                 // Use corrected exchange rates from reference data if available
                 const correctedRates = refData.exchange_rates || {};
@@ -1716,11 +1752,13 @@
         // Load reference data
         async function loadReferenceData() {
             try {
+                console.log('📊 开始加载参考价格数据...');
                 const data = await findLatestDataFile('max_purchase_prices');
                 if (!data) {
-                    console.error('No reference data found');
+                    console.error('❌ 未找到参考价格数据');
                     return;
                 }
+                console.log('✅ 参考价格数据加载成功:', data.date);
                 
                 const container = document.getElementById('refPrices');
                 container.innerHTML = '';
