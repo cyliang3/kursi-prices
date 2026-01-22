@@ -1,0 +1,14 @@
+# Kursi Trades - 价格抓取系统依赖
+# ================================
+
+# HTTP 请求
+requests>=2.28.0
+
+# OpenAI SDK (可选，用于 Manus OpenAI 兼容模式)
+openai>=1.0.0
+
+# 定时任务 (可选，如果不用 crontab)
+schedule>=1.2.0
+
+# 数据处理
+python-dateutil>=2.8.0

@@ -1552,15 +1552,63 @@
             return '―';
         }
 
+        // Get today's date in YYYY-MM-DD format
+        function getTodayDate() {
+            const now = new Date();
+            return now.toISOString().split('T')[0];
+        }
+
+        // Find latest available data file
+        async function findLatestDataFile(baseName) {
+            const today = getTodayDate();
+            const dates = [today];
+            
+            // Also try past 7 days
+            for (let i = 1; i <= 7; i++) {
+                const d = new Date();
+                d.setDate(d.getDate() - i);
+                dates.push(d.toISOString().split('T')[0]);
+            }
+            
+            for (const date of dates) {
+                try {
+                    const response = await fetch(`data/${baseName}_${date}.json`);
+                    if (response.ok) {
+                        return await response.json();
+                    }
+                } catch (e) {
+                    continue;
+                }
+            }
+            
+            // Fallback: try loading from price_history.json
+            try {
+                const historyResponse = await fetch('data/price_history.json');
+                if (historyResponse.ok) {
+                    const history = await historyResponse.json();
+                    const latestDate = Object.keys(history).sort().reverse()[0];
+                    if (latestDate) {
+                        return history[latestDate];
+                    }
+                }
+            } catch (e) {
+                console.error('Could not load price history:', e);
+            }
+            
+            return null;
+        }
+
         // Load market data
         async function loadMarketData() {
             try {
-                const response = await fetch('data/prices_2026-01-21.json');
-                const data = await response.json();
+                const data = await findLatestDataFile('prices');
+                if (!data) {
+                    console.error('No price data found');
+                    return;
+                }
                 
                 // Also load reference data for corrected exchange rates
-                const refResponse = await fetch('data/max_purchase_prices_2026-01-21.json');
-                const refData = await refResponse.json();
+                const refData = await findLatestDataFile('max_purchase_prices') || {};
                 
                 // Update last update time
                 document.getElementById('lastUpdate').textContent = 
@@ -1668,8 +1716,11 @@
         // Load reference data
         async function loadReferenceData() {
             try {
-                const response = await fetch('data/max_purchase_prices_2026-01-21.json');
-                const data = await response.json();
+                const data = await findLatestDataFile('max_purchase_prices');
+                if (!data) {
+                    console.error('No reference data found');
+                    return;
+                }
                 
                 const container = document.getElementById('refPrices');
                 container.innerHTML = '';
