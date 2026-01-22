@@ -78,11 +78,34 @@ class PriceCalculator:
         # 提取SMM价格
         self.smm = price_data.get("smm_prices", {})
     
-    def _get_price(self, key: str, field: str = "price_avg") -> Optional[float]:
-        """安全获取价格"""
+    def _get_price(self, key: str, field: str = "price_avg", fallback_keys: list = None) -> Optional[float]:
+        """
+        安全获取价格，支持多个可能的字段名
+        
+        Args:
+            key: 主要字段名
+            field: 价格字段名（如 price_avg, price）
+            fallback_keys: 备用字段名列表
+        """
+        # 尝试主要字段名
         data = self.smm.get(key, {})
         if isinstance(data, dict):
-            return data.get(field)
+            price = data.get(field) or data.get("price")
+            if price is not None:
+                return float(price) if price != 0 else None
+        
+        # 尝试备用字段名
+        if fallback_keys:
+            for fallback_key in fallback_keys:
+                data = self.smm.get(fallback_key, {})
+                if isinstance(data, dict):
+                    price = data.get(field) or data.get("price")
+                    if price is not None:
+                        return float(price) if price != 0 else None
+        
+        # 如果都没找到，打印调试信息
+        print(f"⚠️ 警告: 未找到价格数据 - key: {key}, field: {field}")
+        print(f"   可用的 SMM 字段: {list(self.smm.keys())}")
         return None
     
     # ==================== 各矿种计算方法 ====================
@@ -144,8 +167,13 @@ class PriceCalculator:
         Returns:
             max_price_ngn_per_kg: 最高采购价 NGN/kg
         """
-        smm_price_usd_ton = self._get_price("monazite_concentrate")
+        # 尝试多个可能的字段名
+        smm_price_usd_ton = self._get_price(
+            "monazite_concentrate", 
+            fallback_keys=["monazite", "monazite_concentrate"]
+        )
         if not smm_price_usd_ton:
+            print(f"❌ Monazite 价格数据缺失，无法计算 {grade_percent}% 品位的价格")
             return 0
         
         BASE_GRADE = 60  # SMM基准品位
@@ -156,11 +184,18 @@ class PriceCalculator:
         # 扣除物流成本
         fob_price_ngn = china_price_ngn - LOGISTICS_COST_SEA
         
+        # 如果扣除物流成本后为负数，说明价格太低，返回0
+        if fob_price_ngn <= 0:
+            print(f"⚠️ Monazite {grade_percent}%: 扣除物流成本后为负数 ({fob_price_ngn:.2f} NGN/吨)")
+            return 0
+        
         # 扣除增值税
         max_price_ngn_per_ton = fob_price_ngn / VAT_RATE
         
         # 换算每公斤
-        return max_price_ngn_per_ton / 1000
+        result = max_price_ngn_per_ton / 1000
+        print(f"✅ Monazite {grade_percent}%: 源价={smm_price_usd_ton} USD/吨, 结果={result:.2f} NGN/kg")
+        return result
     
     def calc_titanium(self) -> float:
         """
