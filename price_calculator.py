@@ -31,7 +31,7 @@ LOGISTICS_BREAKDOWN = {
 COLTAN_AIR_COST = 8  # USD/kg，到广州总成本
 
 # 锂矿折扣系数（尼日利亚市场）
-SPODUMENE_DISCOUNT = 0.6  # 锂辉石打六折
+SPODUMENE_DISCOUNT = 0.3  # 锂辉石打三折（与锂云母一致）
 LEPIDOLITE_DISCOUNT = 0.3  # 锂云母打三折
 
 # 锂云母提锂参数
@@ -239,7 +239,7 @@ class PriceCalculator:
     
     def calc_spodumene(self, grade_percent: float) -> float:
         """
-        锂辉石采购上限计算（打六折）
+        锂辉石采购上限计算（打三折）
         
         Args:
             grade_percent: Li2O品位 (如5表示5%)
@@ -262,7 +262,7 @@ class PriceCalculator:
         # 扣除增值税
         max_price_ngn_per_ton = fob_price_ngn / VAT_RATE
         
-        # 打六折
+        # 打三折（与锂云母一致）
         return max_price_ngn_per_ton * SPODUMENE_DISCOUNT
     
     def calc_lepidolite(self, grade_percent: float) -> float:
@@ -390,15 +390,13 @@ class PriceCalculator:
         # 计算各矿种采购上限
         max_prices = {}
         
-        # 1. 锡矿 (NGN/kg)
+        # 1. 锡矿 (NGN/kg) - 60-70% 每1%一个单位
         max_prices["tin_ore"] = {
             "unit": "NGN/kg",
             "base_grade": "70%",
             "grades": {
-                "60%": round(self.calc_tin_ore(60), 0),
-                "65%": round(self.calc_tin_ore(65), 0),
-                "70%": round(self.calc_tin_ore(70), 0),
-                "75%": round(self.calc_tin_ore(75), 0)
+                f"{grade}%": round(self.calc_tin_ore(grade), 0)
+                for grade in range(60, 71)  # 60% 到 70%，每1%一个单位
             }
         }
         
