@@ -193,5 +193,177 @@
       "missing_data": [],
       "status": "完整"
     }
+  },
+  "2026-01-26": {
+    "date": "2026-01-26",
+    "fetch_time": "22:17",
+    "smm_prices": {
+      "monazite": {
+        "price_low": 7481.57,
+        "price_high": 7671.78,
+        "price_avg": 7576.68,
+        "unit": "USD/mt",
+        "change": 1.52,
+        "date": "2026-01-23"
+      },
+      "spodumene": {
+        "price_low": 2150,
+        "price_high": 2400,
+        "price_avg": 2275,
+        "unit": "USD/mt",
+        "change": 65,
+        "note": "Australian Spot",
+        "date": "2026-01-23"
+      },
+      "lithium_carbonate": {
+        "price_low": 22589.32,
+        "price_high": 23477.67,
+        "price_avg": 23033.49,
+        "unit": "USD/mt",
+        "change": 1349.62,
+        "date": "2026-01-26"
+      },
+      "titanium": {
+        "price_low": 228.43,
+        "price_high": 241.12,
+        "price_avg": 234.78,
+        "unit": "USD/mt",
+        "change": 0.19,
+        "note": "Nigeria origin, TiO2≥50%",
+        "date": "2026-01-26"
+      },
+      "tantalum_ore": {
+        "price_low": 110,
+        "price_high": 111,
+        "price_avg": 110.5,
+        "unit": "USD/Pound",
+        "change": 0,
+        "note": "Ta≥30% CIF China",
+        "date": "2026-01-23"
+      },
+      "tantalum_oxide": {
+        "price_low": 304.34,
+        "price_high": 310.68,
+        "price_avg": 307.51,
+        "unit": "USD/kg",
+        "change": 0.06,
+        "note": "Ta2O5≥99.5%",
+        "date": "2026-01-23"
+      },
+      "niobium_oxide": {
+        "price_low": 41.85,
+        "price_high": 42.48,
+        "price_avg": 42.16,
+        "unit": "USD/kg",
+        "change": 0.01,
+        "note": "Nb2O5 99.5%",
+        "date": "2026-01-23"
+      },
+      "zircon_sand": {
+        "price_low": 1711.88,
+        "price_high": 1775.29,
+        "price_avg": 1743.59,
+        "unit": "USD/mt",
+        "change": 0.35,
+        "note": "Zirconium Silicate (Zr(Hf)O2≥65%)",
+        "date": "2026-01-23"
+      },
+      "tin": {
+        "price_low": 54417.42,
+        "price_high": 55952.99,
+        "price_avg": 55185.21,
+        "unit": "USD/mt",
+        "change": 1888.52,
+        "note": "SMM #1 Tin Ingot",
+        "date": "2026-01-26"
+      },
+      "lead": {
+        "price_low": 2144.72,
+        "price_high": 2157.41,
+        "price_avg": 2151.06,
+        "unit": "USD/mt",
+        "change": 1.7,
+        "note": "SMM #1 Lead",
+        "date": "2026-01-26"
+      },
+      "zinc": {
+        "price_low": 3125.7,
+        "price_high": 3138.39,
+        "price_avg": 3132.05,
+        "unit": "USD/mt",
+        "change": 10.08,
+        "note": "SMM 0# Zinc",
+        "date": "2026-01-26"
+      },
+      "gold": {
+        "price_avg": 4373.55,
+        "unit": "USD/oz",
+        "change": 138.42,
+        "note": "Gold(99.99%)",
+        "date": "2026-01-23"
+      },
+      "silver": {
+        "price_avg": 3498.81,
+        "unit": "USD/kg",
+        "change": 335.62,
+        "note": "1# silver",
+        "date": "2026-01-26"
+      }
+    },
+    "lme_prices": {
+      "tin": {
+        "price": 51743.0,
+        "unit": "USD/mt",
+        "change": 435.0,
+        "change_percent": 0.85,
+        "date": "2026-01-22"
+      },
+      "lead": {
+        "price": 2028.55,
+        "unit": "USD/mt",
+        "change": -5.68,
+        "change_percent": -0.28,
+        "date": "2026-01-22"
+      },
+      "zinc": {
+        "price": 2297.0,
+        "unit": "USD/mt",
+        "change": 0.0,
+        "change_percent": 0.0,
+        "note": "Jan 26 Contract",
+        "date": "2026-01-23"
+      },
+      "gold": {
+        "price": 5123.79,
+        "unit": "USD/oz",
+        "change": 106.79,
+        "change_percent": 2.13,
+        "date": "2026-01-22"
+      },
+      "silver": {
+        "price": 108.785,
+        "unit": "USD/oz",
+        "change": 7.452,
+        "change_percent": 7.35,
+        "date": "2026-01-22"
+      }
+    },
+    "exchange_rates": {
+      "usd_cny": 6.9929,
+      "usd_ngn_parallel_market": 1482,
+      "usd_ngn_parallel_market_range": "1482-1495",
+      "usd_ngn_official": 1410,
+      "cny_ngn": null,
+      "source": "平行市场、官方外汇市场、中国货币网",
+      "rate_type": "parallel_market and official",
+      "date": "2026-01-26"
+    },
+    "data_issues": {
+      "unavailable": [
+        "CNY/NGN汇率（需要通过USD/CNY和USD/NGN计算）",
+        "部分SMM数据日期为2026-01-23而非2026-01-26"
+      ],
+      "reasons": "某些数据最新更新日期为2026-01-23，部分中间汇率需要计算得出"
+    }
   }
 }
