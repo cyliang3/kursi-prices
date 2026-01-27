@@ -365,5 +365,143 @@
       ],
       "reasons": "某些数据最新更新日期为2026-01-23，部分中间汇率需要计算得出"
     }
+  },
+  "2026-01-27": {
+    "date": "2026-01-27",
+    "fetch_time": "22:10",
+    "smm_prices": {
+      "monazite": {
+        "price_low": 7614.38,
+        "price_high": 7804.74,
+        "price_avg": 7709.56,
+        "unit": "USD/mt",
+        "change": 132.88
+      },
+      "spodumene": {
+        "price_low": 2235,
+        "price_high": 2235,
+        "price_avg": 2235,
+        "unit": "USD/mt",
+        "change": 21
+      },
+      "lithium_carbonate": {
+        "price_low": 21318.12,
+        "price_high": 22460.16,
+        "price_avg": 21889.14,
+        "unit": "USD/mt",
+        "change": -1144.35
+      },
+      "titanium": {
+        "price_low": 228.41,
+        "price_high": 241.1,
+        "price_avg": 234.75,
+        "unit": "USD/mt",
+        "change": -0.02
+      },
+      "tantalum_ore": {
+        "price_low": 111,
+        "price_high": 112,
+        "price_avg": 111.5,
+        "unit": "USD/lb",
+        "change": 0
+      },
+      "tantalum_oxide": {
+        "price_low": 310.89,
+        "price_high": 317.23,
+        "price_avg": 314.06,
+        "unit": "USD/kg",
+        "change": -0.03
+      },
+      "niobium_oxide": {
+        "price_low": 41.87,
+        "price_high": 42.51,
+        "price_avg": 42.19,
+        "unit": "USD/kg",
+        "change": 0
+      },
+      "zircon_sand": {
+        "price_low": 1713.06,
+        "price_high": 1776.51,
+        "price_avg": 1744.79,
+        "unit": "USD/mt",
+        "change": -0.18
+      },
+      "tin": {
+        "price_low": 53904.39,
+        "price_high": 54818.02,
+        "price_avg": 54361.21,
+        "unit": "USD/mt",
+        "change": -824
+      },
+      "lead": {
+        "price_low": 2131.81,
+        "price_high": 2144.5,
+        "price_avg": 2138.16,
+        "unit": "USD/mt",
+        "change": -12.91
+      },
+      "zinc": {
+        "price_low": 3135.54,
+        "price_high": 3148.23,
+        "price_avg": 3141.88,
+        "unit": "USD/mt",
+        "change": 9.84
+      },
+      "gold": {
+        "price_avg": 4497.08,
+        "unit": "USD/oz",
+        "change": 123.52
+      },
+      "silver": {
+        "price_avg": 3614.56,
+        "unit": "USD/kg",
+        "change": 115.76
+      }
+    },
+    "lme_prices": {
+      "tin": {
+        "price": 51743.0,
+        "unit": "USD/mt",
+        "change": 435.0
+      },
+      "lead": {
+        "price": 2026.9,
+        "unit": "USD/mt",
+        "change": -12.08
+      },
+      "zinc": {
+        "price": 2297.0,
+        "unit": "USD/mt",
+        "change": 0.0
+      },
+      "gold": {
+        "price": 5102.49,
+        "unit": "USD/oz",
+        "change": -19.81
+      },
+      "silver": {
+        "price": 109.788,
+        "unit": "USD/oz",
+        "change": -5.717
+      }
+    },
+    "exchange_rates": {
+      "usd_cny": 6.954,
+      "usd_ngn": 1482,
+      "cny_ngn": 211.62,
+      "source": "chinamoney.com.cn, ngnrates.com, wise.com",
+      "rate_type": "parallel_market"
+    },
+    "data_issues": {
+      "unavailable": [
+        "titanium_price_in_cny",
+        "tin_price_in_cny",
+        "lead_price_in_cny",
+        "zinc_price_in_cny",
+        "gold_price_in_cny",
+        "silver_price_in_cny"
+      ],
+      "reasons": "SMM数据以USD/mt为主，未找到CNY计价的基本金属和贵金属价格。LME数据为国际市场价格，主要以USD计价。"
+    }
   }
 }
