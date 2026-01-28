@@ -1,0 +1,169 @@
+{
+  "date": "2026-01-28",
+  "fetch_time": "22:08",
+  "smm_prices": {
+    "monazite": {
+      "price_low": 7677.06,
+      "price_high": 7867.4,
+      "price_avg": 7772.23,
+      "unit": "USD/mt",
+      "change": 62.67,
+      "date": "2026-01-27"
+    },
+    "spodumene": {
+      "price_low": 2205,
+      "price_high": 2205,
+      "price_avg": 2205,
+      "unit": "USD/mt",
+      "change": -30,
+      "date": "2026-01-27",
+      "note": "Spodumene Concentrate 6% Li2O Index CIF China"
+    },
+    "lithium_carbonate": {
+      "price_low": 21213.43,
+      "price_high": 22483.7,
+      "price_avg": 21848.56,
+      "unit": "USD/mt",
+      "change": -40.58,
+      "date": "2026-01-28",
+      "note": "Battery-Grade Lithium Carbonate"
+    },
+    "titanium": {
+      "price_low": 228.41,
+      "price_high": 241.1,
+      "price_avg": 234.75,
+      "unit": "USD/mt",
+      "change": -0.02,
+      "date": "2026-01-27",
+      "note": "Titanium Concentrate (Nigeria origin, TiO2 content ≥50%)"
+    },
+    "tantalum_ore": {
+      "price_low": 111,
+      "price_high": 112,
+      "price_avg": 111.5,
+      "unit": "USD/lb",
+      "change": 0,
+      "date": "2026-01-27",
+      "note": "Tantalum Ore (Ta ≥ 30%) CIF China"
+    },
+    "tantalum_oxide": {
+      "price_low": 310.89,
+      "price_high": 317.23,
+      "price_avg": 314.06,
+      "unit": "USD/kg",
+      "change": -0.03,
+      "date": "2026-01-27",
+      "note": "Tantalum Pentoxide (Ta2O5≥99.5%)"
+    },
+    "niobium_oxide": {
+      "price_low": 41.87,
+      "price_high": 42.51,
+      "price_avg": 42.19,
+      "unit": "USD/kg",
+      "change": 0,
+      "date": "2026-01-27",
+      "note": "Niobium Pentoxide 99.5%"
+    },
+    "zircon_sand": {
+      "price_low": 1713.06,
+      "price_high": 1776.51,
+      "price_avg": 1744.79,
+      "unit": "USD/mt",
+      "change": -0.18,
+      "date": "2026-01-27",
+      "note": "Zirconium Silicate (Zr(Hf)O2≥65%)"
+    },
+    "tin": {
+      "price_low": 54977.08,
+      "price_high": 55942.49,
+      "price_avg": 55459.78,
+      "unit": "USD/mt",
+      "change": 1098.58,
+      "date": "2026-01-28",
+      "note": "SMM 1#Tin ingot"
+    },
+    "lead": {
+      "price_low": 2121.34,
+      "price_high": 2140.4,
+      "price_avg": 2130.87,
+      "unit": "USD/mt",
+      "change": -7.29,
+      "date": "2026-01-28",
+      "note": "SMM 1# Lead ingot"
+    },
+    "zinc": {
+      "price_low": 3199.8,
+      "price_high": 3212.5,
+      "price_avg": 3206.15,
+      "unit": "USD/mt",
+      "change": 64.26,
+      "date": "2026-01-28",
+      "note": "SMM 0# Zinc Ingot"
+    },
+    "gold": {
+      "price_avg": 4491.1,
+      "unit": "USD/oz",
+      "change": -5.98,
+      "date": "2026-01-27",
+      "note": "Gold(99.99%)"
+    },
+    "silver": {
+      "price_avg": 3753,
+      "unit": "USD/kg",
+      "change": 138.44,
+      "date": "2026-01-28",
+      "note": "SMM 1# Silver Ingot"
+    }
+  },
+  "lme_prices": {
+    "tin": {
+      "price": 56636.0,
+      "unit": "USD/mt",
+      "change": 4893.0,
+      "change_percent": 9.46,
+      "date": "2026-01-23"
+    },
+    "lead": {
+      "price": 2030.15,
+      "unit": "USD/mt",
+      "change": 4.42,
+      "change_percent": 0.22,
+      "date": "2026-01-28"
+    },
+    "zinc": {
+      "price": 2297.0,
+      "unit": "USD/mt",
+      "change": 0,
+      "change_percent": 0,
+      "date": "2026-01-27",
+      "note": "Jan 26 contract"
+    },
+    "gold": {
+      "price": 5272.81,
+      "unit": "USD/oz",
+      "change": 152.21,
+      "change_percent": 2.97,
+      "date": "2026-01-28"
+    },
+    "silver": {
+      "price": 114.425,
+      "unit": "USD/oz",
+      "change": 8.468,
+      "change_percent": 7.99,
+      "date": "2026-01-28"
+    }
+  },
+  "exchange_rates": {
+    "usd_cny": 6.9546,
+    "usd_ngn_official": 1408.95,
+    "usd_ngn_parallel": 1482,
+    "cny_ngn_parallel": 213,
+    "source": "中国银行、央行、Investing.com、Aboki Forex、NgnRates",
+    "rate_type": "mixed",
+    "note": "USD/NGN平行市场汇率约为1482-1490 NGN/USD"
+  },
+  "data_issues": {
+    "unavailable": [],
+    "notes": "所有主要数据已成功收集。数据来自metal.com (SMM)、investing.com (LME)、中国银行、央行和尼日利亚平行市场汇率平台。"
+  }
+}
