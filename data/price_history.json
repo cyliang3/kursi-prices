@@ -634,5 +634,177 @@
       ],
       "reasons": "CNY/NGN汇率需要通过USD/CNY和USD/NGN交叉计算：CNY/NGN = USD/NGN ÷ USD/CNY = 1481.5 ÷ 6.9755 ≈ 212.3"
     }
+  },
+  "2026-01-29": {
+    "date": "2026-01-29",
+    "fetch_time": "22:31",
+    "smm_prices": {
+      "monazite": {
+        "price_low": 7723.21,
+        "price_high": 7875.65,
+        "price_avg": 7799.43,
+        "unit": "USD/mt",
+        "change": 27.2,
+        "date": "2026-01-28"
+      },
+      "spodumene": {
+        "price_low": 2190,
+        "price_high": 2190,
+        "price_avg": 2190,
+        "unit": "USD/mt",
+        "change": -15,
+        "date": "2026-01-28"
+      },
+      "lithium_carbonate": {
+        "price_low": 20578.3,
+        "price_high": 22102.62,
+        "price_avg": 21340.46,
+        "unit": "USD/mt",
+        "change": -508.11,
+        "date": "2026-01-29"
+      },
+      "titanium": {
+        "price_low": 228.65,
+        "price_high": 241.35,
+        "price_avg": 235,
+        "unit": "USD/mt",
+        "change": 0.25,
+        "date": "2026-01-28",
+        "note": "Nigeria 50% Titanium Concentrate"
+      },
+      "tantalum_ore": {
+        "price_low": 112,
+        "price_high": 113,
+        "price_avg": 112.5,
+        "unit": "USD/lb",
+        "change": 1,
+        "date": "2026-01-28",
+        "note": "CIF China 30% Tantalum Ore"
+      },
+      "tantalum_oxide": {
+        "price_low": 317.57,
+        "price_high": 323.92,
+        "price_avg": 320.74,
+        "unit": "USD/kg",
+        "change": 6.68,
+        "date": "2026-01-28",
+        "note": "99.5% Tantalum Pentoxide"
+      },
+      "niobium_oxide": {
+        "price_low": 42.55,
+        "price_high": 43.19,
+        "price_avg": 42.87,
+        "unit": "USD/kg",
+        "change": 0.68,
+        "date": "2026-01-28",
+        "note": "99.5% Niobium Pentoxide"
+      },
+      "zircon_sand": {
+        "price_low": 1714.86,
+        "price_high": 1778.37,
+        "price_avg": 1746.61,
+        "unit": "USD/mt",
+        "change": 1.83,
+        "date": "2026-01-28",
+        "note": "Zirconium Silicate (Zr(Hf)O2≥65%)"
+      },
+      "tin": {
+        "price_low": 55256.54,
+        "price_high": 56171.13,
+        "price_avg": 55713.84,
+        "unit": "USD/mt",
+        "change": 254.05,
+        "date": "2026-01-29",
+        "note": "SMM 1# Tin Ingot"
+      },
+      "lead": {
+        "price_low": 2121.34,
+        "price_high": 2140.4,
+        "price_avg": 2130.87,
+        "unit": "USD/mt",
+        "change": 0,
+        "date": "2026-01-29",
+        "note": "SMM 1# Lead Ingot"
+      },
+      "zinc": {
+        "price_low": 3206.15,
+        "price_high": 3218.85,
+        "price_avg": 3212.5,
+        "unit": "USD/mt",
+        "change": 6.35,
+        "date": "2026-01-29",
+        "note": "SMM 0# Zinc Ingot"
+      },
+      "gold": {
+        "price_avg": 4640.33,
+        "unit": "USD/oz",
+        "change": 149.23,
+        "date": "2026-01-28",
+        "note": "Gold(99.99%)"
+      },
+      "silver": {
+        "price_avg": 3925.12,
+        "unit": "USD/kg",
+        "change": 172.12,
+        "date": "2026-01-29",
+        "note": "SMM 1# Silver Ingot"
+      }
+    },
+    "lme_prices": {
+      "tin": {
+        "price": 54079,
+        "unit": "USD/mt",
+        "change": -2557,
+        "change_percent": -4.51,
+        "date": "2026-01-26"
+      },
+      "lead": {
+        "price": 2045.65,
+        "unit": "USD/mt",
+        "change": 20.37,
+        "change_percent": 1.01,
+        "date": "Real-time 22:30:26"
+      },
+      "zinc": {
+        "price": 2297,
+        "unit": "USD/mt",
+        "change": 0,
+        "change_percent": 0,
+        "date": "2026-01-28"
+      },
+      "gold": {
+        "price": 5556.04,
+        "unit": "USD/oz",
+        "change": 215.84,
+        "change_percent": 4.04,
+        "date": "Real-time 22:28:32"
+      },
+      "silver": {
+        "price": 117.72,
+        "unit": "USD/oz",
+        "change": 4.186,
+        "change_percent": 3.69,
+        "date": "Real-time 22:14:03"
+      }
+    },
+    "exchange_rates": {
+      "usd_cny": 6.963,
+      "usd_ngn_official": 1395.82,
+      "usd_ngn_parallel_market": {
+        "buy": 1480,
+        "sell": 1490,
+        "average": 1485
+      },
+      "cny_ngn_parallel_market": null,
+      "source": "中国银行 (BOC)、Aboki Forex、NGN Rates、XE.com",
+      "rate_type": "mixed",
+      "note": "USD/CNY为中国银行官方汇率，USD/NGN包含官方汇率和平行市场(黑市)汇率"
+    },
+    "data_issues": {
+      "unavailable": [
+        "CNY/NGN parallel market rate - 无法直接获取，可通过USD/CNY和USD/NGN计算"
+      ],
+      "reasons": "部分数据来自不同日期（SMM数据多为1月28日），LME数据为实时或延迟数据。CNY/NGN平行市场汇率需要通过汇率转换计算得出。"
+    }
   }
 }
