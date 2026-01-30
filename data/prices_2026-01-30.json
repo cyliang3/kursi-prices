@@ -1,214 +1,131 @@
 {
   "date": "2026-01-30",
-  "fetch_time": "22:32",
-  "data_source": "metal.com (SMM), Investing.com (LME), People's Bank of China (Exchange Rates)",
+  "fetch_time": "07:38",
   "smm_prices": {
-    "monazite_concentrate": {
-      "price_low": 8002.67,
-      "price_high": 8282.13,
-      "price_avg": 8142.4,
+    "monazite": {
+      "price_low": 7440.97,
+      "price_high": 7567.73,
+      "price_avg": 7504.35,
       "unit": "USD/mt",
-      "change": 12.7,
-      "date": "2026-01-30",
-      "product": "Monazite Concentrate"
+      "change": "-42.24"
     },
     "spodumene": {
-      "price_low": 2140,
-      "price_high": 2360,
-      "price_avg": 2250,
+      "price_low": null,
+      "price_high": null,
+      "price_avg": null,
       "unit": "USD/mt",
-      "change": -20,
-      "date": "2026-01-29",
-      "product": "Spodumene Concentrate 6% Li2O CIF China"
+      "change": null
     },
     "lithium_carbonate": {
-      "price_low": 19562.09,
-      "price_high": 21213.43,
-      "price_avg": 20387.76,
+      "price_low": null,
+      "price_high": null,
+      "price_avg": null,
       "unit": "USD/mt",
-      "change": -952.7,
-      "date": "2026-01-30",
-      "product": "Lithium Carbonate Battery Grade"
+      "change": null
     },
-    "titanium_concentrate": {
-      "price_low": 228.65,
-      "price_high": 236.27,
-      "price_avg": 232.46,
-      "unit": "USD/mt",
-      "change": -2.54,
-      "date": "2026-01-29",
-      "product": "Titanium Concentrate 50% Nigeria Origin"
+    "titanium": {
+      "price_low": null,
+      "price_high": null,
+      "price_avg": null,
+      "unit": "CNY/mt",
+      "change": null
     },
     "tantalum_ore": {
-      "price_low": 113,
-      "price_high": 115,
-      "price_avg": 114,
+      "price_low": null,
+      "price_high": null,
+      "price_avg": null,
       "unit": "USD/lb",
-      "change": 1.5,
-      "date": "2026-01-29",
-      "product": "Tantalum Ore Ta2O5 >= 30% CIF China"
+      "change": null
     },
     "tantalum_oxide": {
-      "price_low": 323.92,
-      "price_high": 330.27,
-      "price_avg": 327.09,
+      "price_low": null,
+      "price_high": null,
+      "price_avg": null,
       "unit": "USD/kg",
-      "change": 6.35,
-      "date": "2026-01-29",
-      "product": "Tantalum Oxide Ta2O5 99.5%"
+      "change": null
     },
     "niobium_oxide": {
-      "price_low": 42.55,
-      "price_high": 43.19,
-      "price_avg": 42.87,
+      "price_low": null,
+      "price_high": null,
+      "price_avg": null,
       "unit": "USD/kg",
-      "change": 0,
-      "date": "2026-01-29",
-      "product": "Niobium Oxide Nb2O5 99.5%"
+      "change": null
     },
     "zircon_sand": {
-      "price_low": 1714.86,
-      "price_high": 1778.37,
-      "price_avg": 1746.61,
+      "price_low": null,
+      "price_high": null,
+      "price_avg": null,
       "unit": "USD/mt",
-      "change": 0,
-      "date": "2026-01-30",
-      "product": "Zircon Sand Zr(Hf)O2 >= 65%"
+      "change": null
     },
     "tin": {
-      "price_low": 54151.41,
-      "price_high": 54748.44,
-      "price_avg": 54449.92,
-      "unit": "USD/mt",
-      "change": -1263.91,
-      "date": "2026-01-30",
-      "product": "SMM 1# Tin Ingot"
+      "price_low": null,
+      "price_high": null,
+      "price_avg": null,
+      "unit": "CNY/mt",
+      "change": null
     },
     "lead": {
-      "price_low": 2108.64,
-      "price_high": 2127.69,
-      "price_avg": 2118.17,
-      "unit": "USD/mt",
-      "change": -12.7,
-      "date": "2026-01-30",
-      "product": "SMM 1# Lead Ingot"
+      "price_low": null,
+      "price_high": null,
+      "price_avg": null,
+      "unit": "CNY/mt",
+      "change": null
     },
     "zinc": {
-      "price_low": 3269.66,
-      "price_high": 3282.37,
-      "price_avg": 3276.01,
-      "unit": "USD/mt",
-      "change": 63.51,
-      "date": "2026-01-30",
-      "product": "SMM 0# Zinc Ingot"
+      "price_low": null,
+      "price_high": null,
+      "price_avg": null,
+      "unit": "CNY/mt",
+      "change": null
     },
     "gold": {
-      "price_avg": 4903.15,
-      "unit": "USD/oz",
-      "change": 262.82,
-      "date": "2026-01-29",
-      "product": "Gold 99.99%"
+      "price_avg": null,
+      "unit": "CNY/g",
+      "change": null
     },
     "silver": {
-      "price_avg": 3860.34,
-      "unit": "USD/kg",
-      "change": -64.78,
-      "date": "2026-01-30",
-      "product": "SMM 1# Silver Ingot"
+      "price_avg": null,
+      "unit": "CNY/kg",
+      "change": null
     }
   },
   "lme_prices": {
     "tin": {
-      "price": 54719.0,
+      "price": null,
       "unit": "USD/mt",
-      "change": 640.0,
-      "change_percent": 1.18,
-      "date": "2026-01-27",
-      "source": "Investing.com (Delayed Data)"
+      "change": null
     },
     "lead": {
-      "price": 2008.05,
+      "price": null,
       "unit": "USD/mt",
-      "change": -8.98,
-      "change_percent": -0.45,
-      "date": "2026-01-30",
-      "source": "Investing.com (Real-time)"
+      "change": null
     },
     "zinc": {
-      "price": 2297.0,
+      "price": null,
       "unit": "USD/mt",
-      "change": 0,
-      "change_percent": 0,
-      "date": "2026-01-28",
-      "contract": "CME Jan 26",
-      "source": "Investing.com"
+      "change": null
     },
     "gold": {
-      "price": 5247.81,
+      "price": null,
       "unit": "USD/oz",
-      "change": -106.99,
-      "change_percent": -2.0,
-      "date": "2026-01-30",
-      "source": "Investing.com (Real-time)"
+      "change": null
     },
     "silver": {
-      "price": 110.725,
+      "price": null,
       "unit": "USD/oz",
-      "change": -3.704,
-      "change_percent": -3.24,
-      "date": "2026-01-30",
-      "source": "Investing.com (Real-time)"
+      "change": null
     }
   },
   "exchange_rates": {
-    "usd_cny": {
-      "rate": 6.9678,
-      "unit": "CNY per USD",
-      "date": "2026-01-30",
-      "source": "People's Bank of China (中国人民银行)",
-      "type": "Official Mid-rate (中间价)",
-      "change_basis_points": 93
-    },
-    "usd_ngn": {
-      "rate_low": 1460,
-      "rate_high": 1490,
-      "rate_avg": 1475,
-      "unit": "NGN per USD",
-      "date": "2026-01-29/30",
-      "source": "Aboki Forex / NGN Rates",
-      "type": "Parallel Market (平行市场)",
-      "official_rate": 1400.66,
-      "official_source": "NFEM (Nigerian Foreign Exchange Market)"
-    },
-    "cny_ngn": {
-      "rate": 10277,
-      "unit": "NGN per 100 CNY",
-      "calculation": "6.9678 × 1475 = 10,277",
-      "note": "Calculated from USD/CNY and USD/NGN parallel market rates"
-    }
+    "usd_cny": null,
+    "usd_ngn": null,
+    "cny_ngn": null,
+    "source": "环非平行市场 或 其他来源",
+    "rate_type": "parallel_market"
   },
-  "data_quality": {
-    "status": "Complete",
-    "coverage": "All requested metal prices collected",
-    "data_freshness": "2026-01-30 (latest available)",
-    "unavailable_items": [
-      "CNY-denominated prices for some metals (only USD available from SMM)",
-      "Real-time LME tin data (delayed data from 2026-01-27)"
-    ],
-    "notes": [
-      "SMM prices primarily in USD/mt, can be converted using USD/CNY rate of 6.9678",
-      "LME prices from Investing.com with varying data freshness",
-      "USD/NGN parallel market rate is average from multiple sources",
-      "Exchange rates are official/market rates as of 2026-01-30",
-      "All prices collected on 2026-01-30 as requested"
-    ]
-  },
-  "summary": {
-    "total_metals_tracked": 13,
-    "smm_prices_collected": 13,
-    "lme_prices_collected": 5,
-    "exchange_rates_collected": 3,
-    "data_collection_date": "2026-01-30",
-    "collection_method": "Web scraping from official sources"
+  "data_issues": {
+    "unavailable": [],
+    "reasons": ""
   }
 }
