@@ -1,0 +1,147 @@
+{
+  "date": "2026-01-31",
+  "calculation_time": "2026-01-31 03:26:44",
+  "exchange_rates": {
+    "usd_ngn": 150085.44,
+    "usd_cny": 694.84,
+    "cny_ngn": 216,
+    "cny_ngn_source": "Manual Override"
+  },
+  "parameters": {
+    "vat_rate": 1.13,
+    "logistics_cost_sea_ngn": 80309,
+    "coltan_air_cost_usd": 8,
+    "spodumene_discount": 0.3,
+    "lepidolite_discount": 0.3
+  },
+  "source_prices": {
+    "tin": {
+      "price": 54450.71,
+      "unit": "USD/mt"
+    },
+    "tantalum_oxide": {
+      "price": 333.45,
+      "unit": "USD/kg"
+    },
+    "monazite": {
+      "price": null,
+      "unit": "USD/mt"
+    },
+    "titanium": {
+      "price": null,
+      "unit": "CNY/mt"
+    },
+    "zircon": {
+      "price": 1746.64,
+      "unit": "USD/mt"
+    },
+    "spodumene": {
+      "price": 2175.0,
+      "unit": "USD/mt"
+    },
+    "lithium_carbonate": {
+      "price": 20388.05,
+      "unit": "USD/mt"
+    },
+    "lead": {
+      "price": 2118.2,
+      "unit": "USD/mt"
+    },
+    "zinc": {
+      "price": 3276.06,
+      "unit": "USD/mt"
+    }
+  },
+  "max_purchase_prices": {
+    "tin_ore": {
+      "unit": "NGN/kg",
+      "base_grade": "70%",
+      "grades": {
+        "60%": 4339181.0,
+        "61%": 4411502.0,
+        "62%": 4483823.0,
+        "63%": 4556144.0,
+        "64%": 4628465.0,
+        "65%": 4700786.0,
+        "66%": 4773107.0,
+        "67%": 4845427.0,
+        "68%": 4917748.0,
+        "69%": 4990069.0,
+        "70%": 5062390.0
+      }
+    },
+    "coltan": {
+      "unit": "NGN/kg",
+      "base_grade": "30% Ta₂O₅",
+      "note": "Air freight",
+      "grades": {
+        "20%": 8645187.0,
+        "25%": 10806484.0,
+        "30%": 12967780.0,
+        "35%": 15129077.0
+      }
+    },
+    "monazite": {
+      "unit": "NGN/kg",
+      "base_grade": "60% TREO",
+      "grades": {
+        "30%": 540670.0,
+        "40%": 720916.0,
+        "45%": 811040.0,
+        "50%": 901163.0,
+        "60%": 1081410.0
+      }
+    },
+    "titanium": {
+      "unit": "NGN/ton",
+      "base_grade": "≥50% TiO₂",
+      "grades": {
+        "50%": 0
+      }
+    },
+    "zircon": {
+      "unit": "NGN/ton",
+      "base_grade": "≥65% Zr(Hf)O₂",
+      "grades": {
+        "65%": 231915862.0
+      }
+    },
+    "spodumene": {
+      "unit": "NGN/ton",
+      "base_grade": "6% Li₂O",
+      "grades": {
+        "3%": 43310869.0,
+        "4%": 57754932.0,
+        "5%": 72198996.0,
+        "6%": 86643059.0
+      }
+    },
+    "lepidolite": {
+      "unit": "NGN/ton",
+      "base_grade": "2.5% Li₂O",
+      "grades": {
+        "2.0%": 32370496.0,
+        "2.5%": 40468451.0,
+        "3.0%": 48566405.0
+      }
+    },
+    "lead_ore": {
+      "unit": "NGN/ton",
+      "base_grade": "50% Pb",
+      "grades": {
+        "40%": 112463790.0,
+        "50%": 140597505.0,
+        "60%": 168731220.0
+      }
+    },
+    "zinc_ore": {
+      "unit": "NGN/ton",
+      "base_grade": "50% Zn",
+      "grades": {
+        "40%": 173978101.0,
+        "50%": 217490393.0,
+        "60%": 261002686.0
+      }
+    }
+  }
+}

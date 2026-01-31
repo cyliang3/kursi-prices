@@ -1,0 +1,137 @@
+{
+  "date": "2026-01-31",
+  "fetch_time": "22:26",
+  "smm_prices": {
+    "monazite": {
+      "price_low": 8002.79,
+      "price_high": 8282.25,
+      "price_avg": 8142.52,
+      "unit": "USD/mt",
+      "change": 12.82
+    },
+    "spodumene": {
+      "price_low": 2050,
+      "price_high": 2300,
+      "price_avg": 2175,
+      "unit": "USD/mt",
+      "change": -75
+    },
+    "lithium_carbonate": {
+      "price_low": 19562.37,
+      "price_high": 21213.74,
+      "price_avg": 20388.05,
+      "unit": "USD/mt",
+      "change": -952.41
+    },
+    "titanium": {
+      "price_low": 228.65,
+      "price_high": 236.27,
+      "price_avg": 232.46,
+      "unit": "USD/mt",
+      "change": 0
+    },
+    "tantalum_ore": {
+      "price_low": 114,
+      "price_high": 116,
+      "price_avg": 115,
+      "unit": "USD/lb",
+      "change": 1
+    },
+    "tantalum_oxide": {
+      "price_low": 330.27,
+      "price_high": 336.63,
+      "price_avg": 333.45,
+      "unit": "USD/kg",
+      "change": 6.36
+    },
+    "niobium_oxide": {
+      "price_low": 43.82,
+      "price_high": 44.46,
+      "price_avg": 44.14,
+      "unit": "USD/kg",
+      "change": 1.27
+    },
+    "zircon_sand": {
+      "price_low": 1714.88,
+      "price_high": 1778.4,
+      "price_avg": 1746.64,
+      "unit": "USD/mt",
+      "change": 0.03
+    },
+    "tin": {
+      "price_low": 54152.19,
+      "price_high": 54749.22,
+      "price_avg": 54450.71,
+      "unit": "USD/mt",
+      "change": -1263.13
+    },
+    "lead": {
+      "price_low": 2108.67,
+      "price_high": 2127.72,
+      "price_avg": 2118.2,
+      "unit": "USD/mt",
+      "change": -12.67
+    },
+    "zinc": {
+      "price_low": 3269.71,
+      "price_high": 3282.41,
+      "price_avg": 3276.06,
+      "unit": "USD/mt",
+      "change": 63.56
+    },
+    "gold": {
+      "price_avg": 4630.6,
+      "unit": "USD/oz",
+      "change": -272.55
+    },
+    "silver": {
+      "price_avg": 3860.39,
+      "unit": "USD/kg",
+      "change": -64.73
+    }
+  },
+  "lme_prices": {
+    "tin": {
+      "price": 55796.0,
+      "unit": "USD/mt",
+      "change": 1077.0,
+      "change_percent": 1.97
+    },
+    "lead": {
+      "price": 2001.8,
+      "unit": "USD/mt",
+      "change": -15.23,
+      "change_percent": -0.76
+    },
+    "zinc": {
+      "price": 2297.0,
+      "unit": "USD/mt",
+      "change": 0.0,
+      "change_percent": 0.0
+    },
+    "gold": {
+      "price": 4763.1,
+      "unit": "USD/oz",
+      "change": -591.7,
+      "change_percent": -11.05
+    },
+    "silver": {
+      "price": 78.832,
+      "unit": "USD/oz",
+      "change": -35.597,
+      "change_percent": -31.11
+    }
+  },
+  "exchange_rates": {
+    "usd_cny": 694.84,
+    "usd_ngn": 1450,
+    "cny_ngn": 2.09,
+    "source": "中国银行 / Aboki Forex / NGN Rates",
+    "rate_type": "parallel_market",
+    "notes": "USD/NGN为平行市场汇率，CNY/NGN为计算值"
+  },
+  "data_issues": {
+    "unavailable": [],
+    "reasons": "所有主要数据已成功收集。数据来源：metal.com (SMM价格)、Investing.com (LME价格)、官方汇率和平行市场汇率。"
+  }
+}
