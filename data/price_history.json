@@ -1074,5 +1074,168 @@
       "unavailable": [],
       "reasons": "所有主要数据已成功收集。数据来源：metal.com (SMM价格)、Investing.com (LME价格)、官方汇率和平行市场汇率。"
     }
+  },
+  "2026-02-02": {
+    "date": "2026-02-02",
+    "fetch_time": "02:53",
+    "smm_prices": {
+      "monazite": {
+        "price_low": null,
+        "price_high": null,
+        "price_avg": null,
+        "unit": "USD/mt",
+        "change": null
+      },
+      "spodumene": {
+        "price_low": null,
+        "price_high": null,
+        "price_avg": null,
+        "unit": "USD/mt",
+        "change": null
+      },
+      "lithium_carbonate": {
+        "price_low": null,
+        "price_high": null,
+        "price_avg": null,
+        "unit": "USD/mt",
+        "change": null
+      },
+      "titanium": {
+        "price_low": null,
+        "price_high": null,
+        "price_avg": null,
+        "unit": "CNY/mt",
+        "change": null
+      },
+      "tantalum_ore": {
+        "price_low": null,
+        "price_high": null,
+        "price_avg": null,
+        "unit": "USD/lb",
+        "change": null
+      },
+      "tantalum_oxide": {
+        "price_low": null,
+        "price_high": null,
+        "price_avg": null,
+        "unit": "USD/kg",
+        "change": null
+      },
+      "niobium_oxide": {
+        "price_low": null,
+        "price_high": null,
+        "price_avg": null,
+        "unit": "USD/kg",
+        "change": null
+      },
+      "zircon_sand": {
+        "price_low": null,
+        "price_high": null,
+        "price_avg": null,
+        "unit": "USD/mt",
+        "change": null
+      },
+      "tin": {
+        "price_low": null,
+        "price_high": null,
+        "price_avg": null,
+        "unit": "CNY/mt",
+        "change": null
+      },
+      "lead": {
+        "price_low": null,
+        "price_high": null,
+        "price_avg": null,
+        "unit": "CNY/mt",
+        "change": null
+      },
+      "zinc": {
+        "price_low": null,
+        "price_high": null,
+        "price_avg": null,
+        "unit": "CNY/mt",
+        "change": null
+      },
+      "gold": {
+        "price_avg": null,
+        "unit": "CNY/g",
+        "change": null
+      },
+      "silver": {
+        "price_avg": null,
+        "unit": "CNY/kg",
+        "change": null
+      }
+    },
+    "lme_prices": {
+      "tin": {
+        "price": 54924.0,
+        "unit": "USD/mt",
+        "change": -1.56,
+        "note": "Investing.com - 延迟数据 (2026-01-29)"
+      },
+      "lead": {
+        "price": 1975.9,
+        "unit": "USD/mt",
+        "change": -1.29,
+        "note": "Investing.com - 实时数据 (2026-02-02)"
+      },
+      "zinc": {
+        "price": 2297.0,
+        "unit": "USD/mt",
+        "change": 0.0,
+        "note": "Investing.com - CME合约 (2026-01-30)"
+      },
+      "gold": {
+        "price": 4598.01,
+        "unit": "USD/oz",
+        "change": -3.1,
+        "note": "Investing.com - 实时数据 (2026-02-02)"
+      },
+      "silver": {
+        "price": 76.873,
+        "unit": "USD/oz",
+        "change": -2.11,
+        "note": "Investing.com - 实时数据 (2026-02-02)"
+      }
+    },
+    "exchange_rates": {
+      "usd_cny": 6.94,
+      "usd_ngn": 1457.5,
+      "cny_ngn": 10118.25,
+      "source": "Bank of China (USD/CNY), Aboki Forex (USD/NGN)",
+      "rate_type": "parallel_market",
+      "notes": {
+        "usd_cny": "中国银行官方汇率 (2026-02-02)",
+        "usd_ngn": "尼日利亚平行市场汇率，买入1450，卖出1465，取平均值1457.5 (Aboki Forex)",
+        "cny_ngn": "基于USD/CNY 6.94和USD/NGN 1457.5计算得出"
+      }
+    },
+    "data_issues": {
+      "unavailable": [
+        "Monazite Concentrate (独居石精矿)",
+        "Spodumene Concentrate (锂矿)",
+        "Lithium Carbonate (碳酸锂)",
+        "Titanium Concentrate (钛精矿)",
+        "Tantalum Ore (钽矿)",
+        "Tantalum Oxide (氧化钽)",
+        "Niobium Oxide (氧化铌)",
+        "Zircon Sand (锆英砂)",
+        "SMM Tin (SMM锡)",
+        "SMM Lead (SMM铅)",
+        "SMM Zinc (SMM锌)",
+        "Au99.99 (黄金)",
+        "Ag99.99 (白银)"
+      ],
+      "reasons": "metal.com网站上的SMM中国国内价格数据需要用户登录才能查看。页面显示'Sign in to view'提示，表格中的具体数值（Price Range、Avg、Change等）被隐藏。"
+    },
+    "summary": {
+      "successful_data_collection": "LME/Investing.com国际市场价格和汇率数据已成功收集",
+      "partial_collection": "SMM中国国内矿石和金属价格数据无法获取（需要登录）",
+      "total_lme_commodities": 5,
+      "total_smm_commodities": 13,
+      "lme_data_completeness": "100%",
+      "smm_data_completeness": "0%"
+    }
   }
 }
