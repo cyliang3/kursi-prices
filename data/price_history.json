@@ -1237,5 +1237,144 @@
       "lme_data_completeness": "100%",
       "smm_data_completeness": "0%"
     }
+  },
+  "2026-02-05": {
+    "date": "2026-02-05",
+    "fetch_time": "22:40",
+    "smm_prices": {
+      "monazite": {
+        "price_low": null,
+        "price_high": null,
+        "price_avg": 62800,
+        "unit": "yuan/tonne",
+        "change": "+1000.16%"
+      },
+      "spodumene": {
+        "price_low": null,
+        "price_high": null,
+        "price_avg": null,
+        "unit": "USD/tonne",
+        "change": null
+      },
+      "lithium_carbonate": {
+        "price_low": null,
+        "price_high": null,
+        "price_avg": 144000,
+        "unit": "yuan/tonne",
+        "change": "-5.88%"
+      },
+      "titanium": {
+        "price_low": null,
+        "price_high": null,
+        "price_avg": 1605,
+        "unit": "yuan/tonne",
+        "change": "0%"
+      },
+      "tantalum_ore": {
+        "price_low": null,
+        "price_high": null,
+        "price_avg": null,
+        "unit": "USD/lb",
+        "change": null
+      },
+      "tantalum_oxide": {
+        "price_low": null,
+        "price_high": null,
+        "price_avg": null,
+        "unit": "USD/kg",
+        "change": null
+      },
+      "niobium_oxide": {
+        "price_low": null,
+        "price_high": null,
+        "price_avg": 367.5,
+        "unit": "yuan/kg",
+        "change": "0%"
+      },
+      "zircon_sand": {
+        "price_low": null,
+        "price_high": null,
+        "price_avg": null,
+        "unit": "USD/mt",
+        "change": null
+      },
+      "tin": {
+        "price_low": null,
+        "price_high": null,
+        "price_avg": 378100,
+        "unit": "yuan/tonne",
+        "change": "-4.29%"
+      },
+      "lead": {
+        "price_low": null,
+        "price_high": null,
+        "price_avg": 16400,
+        "unit": "yuan/tonne",
+        "change": "-0.15%"
+      },
+      "zinc": {
+        "price_low": null,
+        "price_high": null,
+        "price_avg": 24580,
+        "unit": "yuan/tonne",
+        "change": "-1.29%"
+      },
+      "gold": {
+        "price_avg": 1132.3,
+        "unit": "yuan/g",
+        "change": "+6.12%"
+      },
+      "silver": {
+        "price_avg": 25760,
+        "unit": "yuan/kg",
+        "change": "+2.77%"
+      }
+    },
+    "lme_prices": {
+      "tin": {
+        "price": 46321.0,
+        "unit": "USD/mt",
+        "change": "-10.52%"
+      },
+      "lead": {
+        "price": 1962.7,
+        "unit": "USD/mt",
+        "change": "-0.30%"
+      },
+      "zinc": {
+        "price": 2297.0,
+        "unit": "USD/mt",
+        "change": "0%"
+      },
+      "gold": {
+        "price": 4879.51,
+        "unit": "USD/oz",
+        "change": "-1.44%"
+      },
+      "silver": {
+        "price": 75.115,
+        "unit": "USD/oz",
+        "change": "-11.00%"
+      }
+    },
+    "exchange_rates": {
+      "usd_cny": 6.957,
+      "usd_ngn_official": 1388.15,
+      "usd_ngn_parallel": 1467.5,
+      "cny_ngn_official": 199.5,
+      "cny_ngn_parallel": 210.8,
+      "source": "中国人民银行、Vanguard Nigeria",
+      "rate_type": "official_and_parallel_market"
+    },
+    "data_issues": {
+      "unavailable": [
+        "spodumene_detailed_price",
+        "tantalum_ore_detailed_price",
+        "tantalum_oxide_detailed_price",
+        "zircon_sand_detailed_price",
+        "detailed_high_low_prices_for_most_smm_commodities"
+      ],
+      "reasons": "metal.com网站上大多数详细价格数据需要登录才能查看。仅能获取标题中显示的平均价格和涨跌幅。Investing.com上的Zinc数据为CME合约数据。"
+    }
   }
 }
